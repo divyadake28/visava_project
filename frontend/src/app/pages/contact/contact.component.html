@@ -1,0 +1,243 @@
+<!-- Hero Banner -->
+<div class="relative py-16 lg:py-24 bg-emerald-950 text-white overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&auto=format&fit=crop&q=85" 
+      alt="Contact Visawa Agro" 
+      class="w-full h-full object-cover opacity-25 scale-105">
+    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950 via-emerald-950/90 to-stone-900/80"></div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/20 border border-emerald-400/30 rounded-full text-xs font-bold text-emerald-300 backdrop-blur-md">
+      <span>📍</span>
+      <span>{{ langService.t('contact.badge') }}</span>
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-md">
+      {{ langService.t('contact.title') }}
+    </h1>
+    <p class="text-xs sm:text-sm lg:text-base text-emerald-100 max-w-2xl mx-auto font-medium">
+      {{ langService.t('contact.subtitle') }}
+    </p>
+  </div>
+</div>
+
+<div class="py-16 bg-stone-50 min-h-screen">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    
+    <!-- Main Content Grid: Contact Details & Form -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+      <!-- Contact Info Cards -->
+      <div class="space-y-6">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 shadow-md space-y-6">
+          <h3 class="text-lg font-black text-stone-900">{{ langService.t('contact.addressTitle') }}</h3>
+          
+          <div class="space-y-5 text-xs sm:text-sm">
+            <div class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-lg font-bold shadow-sm">
+                📍
+              </div>
+              <div>
+                <span class="font-bold text-stone-900 block mb-0.5">{{ langService.t('contact.addressTitle') }}</span>
+                <span class="text-stone-600 leading-relaxed block">{{ settings()?.site?.address || 'Visawa Agro Tourism – Babacha Mala, Maharashtra, India' }}</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-lg font-bold shadow-sm">
+                📞
+              </div>
+              <div>
+                <span class="font-bold text-stone-900 block mb-0.5">{{ langService.t('contact.phoneTitle') }}</span>
+                <a [href]="'tel:' + (settings()?.site?.phone || '+919876543210')" class="text-emerald-700 font-bold hover:underline block">
+                  {{ settings()?.site?.phone || '+91 98765 43210' }}
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-lg font-bold shadow-sm">
+                ✉️
+              </div>
+              <div>
+                <span class="font-bold text-stone-900 block mb-0.5">{{ langService.t('contact.emailTitle') }}</span>
+                <a [href]="'mailto:' + (settings()?.site?.email || 'info@visava.com')" class="text-emerald-700 font-bold hover:underline block">
+                  {{ settings()?.site?.email || 'info@visava.com' }}
+                </a>
+              </div>
+            </div>
+
+            <!-- WhatsApp Direct Action -->
+            <div class="pt-2">
+              <a [href]="getWhatsAppUrl()" target="_blank" class="w-full py-3 px-4 bg-[#25D366] hover:bg-[#20BD5A] text-white font-bold text-xs rounded-2xl shadow-md transition flex items-center justify-center gap-2">
+                <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 00-3.48-8.413z"/></svg>
+                <span>{{ langService.t('contact.chatWhatsApp') }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Working Hours Card -->
+        <div class="bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl space-y-4">
+          <h4 class="text-base font-black text-white flex items-center gap-2">
+            <span>⏰</span>
+            <span>{{ langService.t('contact.timingTitle') }}</span>
+          </h4>
+          <div class="space-y-3 text-xs text-emerald-100">
+            <div class="flex justify-between border-b border-emerald-800/80 pb-2">
+              <span>{{ langService.isMarathi() ? 'डे पिकनिक वेळ' : 'Day Picnic Hours' }}</span>
+              <span class="font-bold text-amber-300">09:00 AM - 07:00 PM</span>
+            </div>
+            <div class="flex justify-between border-b border-emerald-800/80 pb-2">
+              <span>{{ langService.isMarathi() ? 'मुक्काम चेक-इन' : 'Cottage Check-in' }}</span>
+              <span class="font-bold text-emerald-300">12:00 PM</span>
+            </div>
+            <div class="flex justify-between pt-1">
+              <span>{{ langService.isMarathi() ? 'मुक्काम चेक-आऊट' : 'Cottage Check-out' }}</span>
+              <span class="font-bold text-emerald-300">10:00 AM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reactive Forms Enquiry Form -->
+      <div class="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-10 border border-stone-200 shadow-xl space-y-6">
+        <div>
+          <span class="inline-block px-3 py-1 bg-amber-50 text-amber-800 text-xs font-bold rounded-full border border-amber-200 mb-2">
+            {{ langService.t('contact.badge') }}
+          </span>
+          <h3 class="text-2xl font-black text-stone-900">{{ langService.t('form.title') }}</h3>
+          <p class="text-xs text-stone-500 mt-1">{{ langService.t('contact.subtitle') }}</p>
+        </div>
+
+        @if (submitSuccess()) {
+          <div class="p-8 bg-emerald-50 border border-emerald-200 rounded-3xl text-center space-y-3 animate-fade-up">
+            <div class="w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto text-2xl font-bold shadow-lg">✓</div>
+            <h3 class="text-xl font-bold text-emerald-900">{{ langService.t('form.successTitle') }}</h3>
+            <p class="text-xs sm:text-sm text-emerald-800 max-w-md mx-auto">{{ langService.t('form.success') }}</p>
+            <button 
+              (click)="submitSuccess.set(false)" 
+              class="mt-4 px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition cursor-pointer">
+              {{ langService.t('form.sendAnother') }}
+            </button>
+          </div>
+        } @else {
+          <form [formGroup]="enquiryForm" (ngSubmit)="submitEnquiry()" class="space-y-4">
+            @if (submitError()) {
+              <div class="p-4 bg-rose-50 border border-rose-200 text-rose-800 text-xs font-medium rounded-xl">
+                {{ submitErrorMessage() || langService.t('form.error') }}
+              </div>
+            }
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-stone-700 mb-1.5">{{ langService.t('form.name') }} *</label>
+                <input 
+                  type="text" 
+                  formControlName="name" 
+                  [placeholder]="langService.t('form.namePlaceholder')"
+                  class="w-full px-4 py-3.5 bg-stone-50 border border-stone-200 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 rounded-xl text-stone-900 text-xs placeholder:text-stone-400 focus:outline-none transition">
+                @if (enquiryForm.get('name')?.invalid && (enquiryForm.get('name')?.touched || formSubmitted())) {
+                  <span class="text-[11px] text-rose-500 mt-1 block">{{ langService.t('form.nameRequired') }}</span>
+                }
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-stone-700 mb-1.5">{{ langService.t('form.email') }} *</label>
+                <input 
+                  type="email" 
+                  formControlName="email" 
+                  [placeholder]="langService.t('form.emailPlaceholder')"
+                  class="w-full px-4 py-3.5 bg-stone-50 border border-stone-200 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 rounded-xl text-stone-900 text-xs placeholder:text-stone-400 focus:outline-none transition">
+                @if (enquiryForm.get('email')?.invalid && (enquiryForm.get('email')?.touched || formSubmitted())) {
+                  <span class="text-[11px] text-rose-500 mt-1 block">{{ langService.t('form.emailRequired') }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-stone-700 mb-1.5">{{ langService.t('form.phone') }}</label>
+                <input 
+                  type="text" 
+                  formControlName="phone" 
+                  [placeholder]="langService.t('form.phonePlaceholder')"
+                  class="w-full px-4 py-3.5 bg-stone-50 border border-stone-200 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 rounded-xl text-stone-900 text-xs placeholder:text-stone-400 focus:outline-none transition">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-stone-700 mb-1.5">{{ langService.t('form.subject') }}</label>
+                <input 
+                  type="text" 
+                  formControlName="subject" 
+                  [placeholder]="langService.t('form.subjectPlaceholder')"
+                  class="w-full px-4 py-3.5 bg-stone-50 border border-stone-200 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 rounded-xl text-stone-900 text-xs placeholder:text-stone-400 focus:outline-none transition">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-stone-700 mb-1.5">{{ langService.t('form.message') }} *</label>
+              <textarea 
+                rows="4" 
+                formControlName="message" 
+                [placeholder]="langService.t('form.messagePlaceholder')"
+                class="w-full px-4 py-3.5 bg-stone-50 border border-stone-200 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 rounded-xl text-stone-900 text-xs placeholder:text-stone-400 focus:outline-none transition"></textarea>
+              @if (enquiryForm.get('message')?.invalid && (enquiryForm.get('message')?.touched || formSubmitted())) {
+                <span class="text-[11px] text-rose-500 mt-1 block">{{ langService.t('form.messageRequired') }}</span>
+              }
+            </div>
+
+            <button 
+              type="submit" 
+              [disabled]="isSubmitting()"
+              class="w-full py-4 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 disabled:opacity-50 text-white font-black text-xs sm:text-sm rounded-2xl shadow-xl shadow-emerald-700/20 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer">
+              {{ isSubmitting() ? langService.t('form.submitting') : langService.t('form.submit') }}
+            </button>
+          </form>
+        }
+      </div>
+    </div>
+
+    <!-- Responsive Google Maps & Directions Section -->
+    <div class="bg-white rounded-3xl p-6 sm:p-10 border border-stone-200 shadow-xl space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-100 pb-4">
+        <div>
+          <span class="inline-block px-3 py-1 bg-emerald-50 text-emerald-800 text-xs font-bold rounded-full border border-emerald-200 mb-1.5">
+            🗺️ {{ langService.isMarathi() ? 'स्थान व रस्ता नकाशा' : 'Location & Route Map' }}
+          </span>
+          <h3 class="text-xl sm:text-2xl font-black text-stone-900">
+            {{ langService.isMarathi() ? 'आमच्या मळ्यापर्यंत कसे पोहोचावे?' : 'How to Reach Visawa Agro Tourism?' }}
+          </h3>
+          <p class="text-xs text-stone-600 mt-1">
+            {{ settings()?.site?.address || 'Visawa Agro Tourism – Babacha Mala, Maharashtra, India' }}
+          </p>
+        </div>
+
+        <!-- Get Directions Action Button -->
+        <a 
+          [href]="getDirectionsUrl()" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-stone-950 font-black text-xs sm:text-sm rounded-2xl shadow-lg shadow-amber-500/25 transition-all duration-300 transform hover:scale-105 shrink-0">
+          <span>📍</span>
+          <span>{{ langService.t('contact.getDirections') }}</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+
+      <!-- Responsive Google Map Iframe Container -->
+      <div class="relative w-full h-80 sm:h-96 lg:h-[420px] rounded-3xl overflow-hidden shadow-inner border border-stone-200">
+        <iframe
+          [src]="getGoogleMapsEmbedUrl()"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="w-full h-full">
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+</div>

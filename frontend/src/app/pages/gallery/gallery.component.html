@@ -1,0 +1,127 @@
+<!-- Hero Banner -->
+<div class="relative py-20 lg:py-28 bg-emerald-950 text-white overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?w=1920&auto=format&fit=crop&q=85" 
+      alt="Visawa Agro Gallery" 
+      class="w-full h-full object-cover opacity-25 scale-105">
+    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950 via-emerald-950/90 to-stone-900/80"></div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/20 border border-emerald-400/30 rounded-full text-xs font-bold text-emerald-300 backdrop-blur-md">
+      <span>📸</span>
+      <span>{{ langService.t('gallery.badge') }}</span>
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-md">
+      {{ langService.t('gallery.title') }}
+    </h1>
+    <p class="text-sm sm:text-base text-emerald-100 max-w-2xl mx-auto font-medium">
+      {{ langService.t('gallery.subtitle') }}
+    </p>
+  </div>
+</div>
+
+<!-- Gallery Main Content (Clean Natural Light Cream Theme) -->
+<div class="py-12 sm:py-16 bg-stone-50 min-h-screen">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    
+    <!-- Category Filter Chips -->
+    <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+      @for (filter of categoryFilters; track filter.key) {
+        <button 
+          type="button"
+          (click)="setCategory(filter.key)"
+          [class.bg-emerald-800]="selectedCategory() === filter.key"
+          [class.text-white]="selectedCategory() === filter.key"
+          [class.shadow-lg]="selectedCategory() === filter.key"
+          [class.border-emerald-700]="selectedCategory() === filter.key"
+          [class.scale-105]="selectedCategory() === filter.key"
+          [class.bg-white]="selectedCategory() !== filter.key"
+          [class.text-stone-700]="selectedCategory() !== filter.key"
+          [class.hover:bg-stone-100]="selectedCategory() !== filter.key"
+          [class.border-stone-200]="selectedCategory() !== filter.key"
+          class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold border transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-sm">
+          <span>{{ filter.icon }}</span>
+          <span>{{ getCategoryLabel(filter) }}</span>
+          <span 
+            [class.bg-white/20]="selectedCategory() === filter.key"
+            [class.text-white]="selectedCategory() === filter.key"
+            [class.bg-stone-100]="selectedCategory() !== filter.key"
+            [class.text-stone-600]="selectedCategory() !== filter.key"
+            class="px-2 py-0.5 rounded-full text-[10px] font-black">
+            {{ getCategoryCount(filter.key) }}
+          </span>
+        </button>
+      }
+    </div>
+
+    @if (loading()) {
+      <app-loading-spinner></app-loading-spinner>
+    } @else if (filteredGallery().length === 0) {
+      <app-empty-state 
+        [title]="langService.t('state.noGallery')" 
+        [description]="langService.isMarathi() ? 'या प्रकारात सध्या फोटो उपलब्ध नाहीत.' : 'No photos found in this category.'">
+      </app-empty-state>
+    } @else {
+      <!-- 4-Column Responsive Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-7">
+        @for (photo of filteredGallery(); track photo.id; let i = $index) {
+          <div 
+            (click)="openLightbox(photo, i)"
+            class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-stone-200/90 group cursor-pointer flex flex-col agro-card">
+            
+            <div class="relative h-64 sm:h-72 overflow-hidden bg-stone-100">
+              <img 
+                [src]="photo.image" 
+                [alt]="photo.title || 'Visawa Agro Tourism'" 
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out">
+              
+              <!-- Category Badge -->
+              <div class="absolute top-3.5 left-3.5">
+                <span class="px-3 py-1 bg-emerald-950/80 backdrop-blur-md text-amber-300 text-[11px] font-bold rounded-full shadow border border-emerald-800/60">
+                  {{ photo.category }}
+                </span>
+              </div>
+
+              <!-- Zoom Icon Pill -->
+              <div class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-stone-900/60 text-white backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/></svg>
+              </div>
+
+              <!-- Hover Gradient Overlay with Title -->
+              <div class="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-5 flex flex-col justify-end">
+                <h4 class="text-sm font-bold text-white leading-snug drop-shadow-md">
+                  {{ photo.title }}
+                </h4>
+                <span class="text-[11px] text-amber-300 font-medium mt-1 flex items-center gap-1">
+                  <span>🔍</span>
+                  <span>{{ langService.isMarathi() ? 'मोठा फोटो पहा' : 'Click to View Full Size' }}</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Bottom Bar (Static Title for easy browsing) -->
+            <div class="p-4 bg-white border-t border-stone-100 flex items-center justify-between">
+              <h3 class="text-xs font-bold text-stone-800 line-clamp-1 group-hover:text-emerald-800 transition-colors">
+                {{ photo.title }}
+              </h3>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+<!-- Full Lightbox Modal with Next/Prev Controls -->
+<app-lightbox-modal
+  [isOpen]="lightboxOpen()"
+  [imageUrl]="activePhotoUrl()"
+  [title]="activePhotoTitle()"
+  [category]="activePhotoCategory()"
+  [currentIndex]="activePhotoIndex()"
+  [totalCount]="filteredGallery().length"
+  (prev)="prevPhoto()"
+  (next)="nextPhoto()"
+  (close)="lightboxOpen.set(false)">
+</app-lightbox-modal>

@@ -1,0 +1,906 @@
+<!-- 1. Visawa Agro Tourism Hero Section (Fully Visible on First Viewport) -->
+<section class="relative min-h-[calc(100vh-4.5rem)] flex flex-col justify-center items-center text-white overflow-hidden py-8 sm:py-10 lg:py-12">
+  <!-- Clean Natural Background with Soft Dark Overlay -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      [src]="settings()?.homepage?.hero?.image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&auto=format&fit=crop&q=85'" 
+      alt="Visawa Agro Tourism & Resort – Babacha Mala" 
+      loading="eager"
+      fetchpriority="high"
+      class="w-full h-full object-cover scale-105 transition-transform duration-1000 ease-out">
+    <!-- Clean, Natural Dark Overlay preserving the farm background -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0D3B1C]/90 via-[#0D3B1C]/55 to-black/35"></div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center my-auto w-full flex flex-col items-center">
+    <div class="space-y-3 sm:space-y-4 animate-fade-up flex flex-col items-center">
+      
+      <!-- Destination Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-[#0D3B1C]/80 border border-amber-400/30 rounded-full text-xs font-semibold text-amber-300 backdrop-blur-xl shadow-md">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        <span class="tracking-wide uppercase text-[11px]">{{ langService.t('hero.badge') }}</span>
+      </div>
+
+      <!-- Main Headline (Compact 2-3 Lines with Balanced Size & Line Spacing) -->
+      <h1 class="text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-white leading-[1.2] drop-shadow-md max-w-3xl">
+        {{ langService.t('hero.title') }}
+      </h1>
+
+      <!-- Brand Tagline & Supporting Statement -->
+      <div class="space-y-1 sm:space-y-1.5 max-w-2xl">
+        <p class="text-amber-300 font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-1.5">
+          <span>🌿</span>
+          <span class="italic font-medium">"{{ langService.t('brand.tagline') }}"</span>
+        </p>
+        <p class="text-xs sm:text-sm text-emerald-100/90 font-normal leading-relaxed">
+          {{ langService.t('hero.subtitle') }}
+        </p>
+      </div>
+
+      <!-- Dual High-Conversion CTAs -->
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
+        <a routerLink="/contact" class="px-7 py-3 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-stone-950 font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-amber-500/20 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer border border-amber-300/40">
+          <span>{{ langService.t('hero.bookEnquiry') }}</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+
+        <a routerLink="/experiences" class="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm rounded-xl backdrop-blur-xl border border-white/20 hover:border-amber-400/50 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2">
+          <span>{{ langService.t('hero.exploreExperiences') }}</span>
+          <span>↓</span>
+        </a>
+      </div>
+
+      <!-- 3 Experience Highlight Pills -->
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-2 max-w-2xl">
+        <a routerLink="/experiences" class="px-3.5 py-1.5 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-amber-400/40 rounded-full text-[11px] sm:text-xs font-semibold text-emerald-100 hover:text-white backdrop-blur-md transition-all flex items-center gap-1.5 shadow-sm">
+          <span>🚜</span>
+          <span>{{ langService.isMarathi() ? 'बैलगाडी व शिवार फेरी' : 'Bullock Cart & Farm Tour' }}</span>
+        </a>
+        <a routerLink="/experiences" class="px-3.5 py-1.5 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-amber-400/40 rounded-full text-[11px] sm:text-xs font-semibold text-amber-300 hover:text-white backdrop-blur-md transition-all flex items-center gap-1.5 shadow-sm">
+          <span>🍲</span>
+          <span>{{ langService.isMarathi() ? 'चुलीवरची मिसळ व गावरान जेवण' : 'Chulivarchi Misal & Dining' }}</span>
+        </a>
+        <a routerLink="/experiences" class="px-3.5 py-1.5 bg-white/10 hover:bg-white/15 border border-white/20 hover:border-amber-400/40 rounded-full text-[11px] sm:text-xs font-semibold text-emerald-100 hover:text-white backdrop-blur-md transition-all flex items-center gap-1.5 shadow-sm">
+          <span>🏊‍♂️</span>
+          <span>{{ langService.isMarathi() ? 'स्विमिंग पूल व रेन डान्स' : 'Swimming Pool & Rain Dance' }}</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Statistics Cards (Positioned Below the Hero Viewport) -->
+<section class="py-8 bg-[#0D3B1C] border-y border-emerald-900/60 relative z-20 text-white">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div id="heroStats" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
+      <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center transform transition duration-300 hover:scale-105">
+        <div class="text-xl sm:text-2xl font-black text-amber-300 tracking-tight">{{ countGuests() }}+</div>
+        <div class="text-[10px] sm:text-xs text-emerald-100/90 mt-0.5 font-medium line-clamp-1">{{ langService.t('hero.statGuests') }}</div>
+      </div>
+      <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center transform transition duration-300 hover:scale-105">
+        <div class="text-xl sm:text-2xl font-black text-amber-300 tracking-tight">{{ countAcres() }}+</div>
+        <div class="text-[10px] sm:text-xs text-emerald-100/90 mt-0.5 font-medium line-clamp-1">{{ langService.t('hero.statAcres') }}</div>
+      </div>
+      <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center transform transition duration-300 hover:scale-105">
+        <div class="text-xl sm:text-2xl font-black text-amber-400 flex items-center justify-center gap-1 tracking-tight">
+          <span>{{ countRating() }}</span>
+          <span class="text-amber-400 text-xs">★★★★★</span>
+        </div>
+        <div class="text-[10px] sm:text-xs text-emerald-100/90 mt-0.5 font-medium line-clamp-1">{{ langService.t('hero.statRating') }}</div>
+      </div>
+      <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-center transform transition duration-300 hover:scale-105">
+        <div class="text-xl sm:text-2xl font-black text-amber-300 tracking-tight">{{ countActivities() }}+</div>
+        <div class="text-[10px] sm:text-xs text-emerald-100/90 mt-0.5 font-medium line-clamp-1">{{ langService.t('hero.statActivities') }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Luxury Editorial About Us Section (Soft Cream Background) -->
+<section class="py-24 sm:py-28 bg-[#FAF8F2] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      
+      <!-- Left: Story & 4 Refined Trust Badges -->
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-900/10 text-emerald-900 text-xs font-bold rounded-full border border-emerald-900/20">
+          <span>🌱</span>
+          <span class="tracking-wide uppercase text-[11px]">{{ langService.t('about.badge') }}</span>
+        </div>
+        
+        <h2 class="text-2xl sm:text-4xl font-black text-stone-900 leading-tight tracking-tight">
+          {{ langService.t('about.title') }}
+        </h2>
+        
+        <p class="text-sm sm:text-base text-stone-600 leading-relaxed font-normal">
+          {{ langService.t('about.desc1') }}
+        </p>
+
+        <!-- 4 Minimalist Luxury Trust Badges -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+          <div class="flex items-center gap-3.5 p-4 bg-white rounded-2xl border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition">
+            <span class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center text-base shrink-0 border border-emerald-100">🌿</span>
+            <div>
+              <span class="text-xs font-bold text-stone-900 block">{{ langService.isMarathi() ? '१००% अस्सल कृषी संस्कृती' : '100% Authentic Rural Heritage' }}</span>
+              <span class="text-[11px] text-stone-500">{{ langService.isMarathi() ? 'मनाच्या समाधानाची शिवार फेरी' : 'Pure countryside atmosphere' }}</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3.5 p-4 bg-white rounded-2xl border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition">
+            <span class="w-9 h-9 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center text-base shrink-0 border border-amber-100">🍲</span>
+            <div>
+              <span class="text-xs font-bold text-stone-900 block">{{ langService.isMarathi() ? 'चुलीवरचे गावरान जेवण' : 'Wood-Fired Village Food' }}</span>
+              <span class="text-[11px] text-stone-500">{{ langService.isMarathi() ? 'ताजी भाकरी, मिसळ व पिठलं' : 'Farm-fresh organic ingredients' }}</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3.5 p-4 bg-white rounded-2xl border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition">
+            <span class="w-9 h-9 rounded-xl bg-teal-50 text-teal-800 flex items-center justify-center text-base shrink-0 border border-teal-100">👨‍👩‍👧‍👦</span>
+            <div>
+              <span class="text-xs font-bold text-stone-900 block">{{ langService.isMarathi() ? 'कौटुंबिक सुरक्षित वातावरण' : 'Family & Kids Sanctuary' }}</span>
+              <span class="text-[11px] text-stone-500">{{ langService.isMarathi() ? 'सर्व वयोगटांसाठी खेळ व मजा' : 'Safe rural activities for all' }}</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3.5 p-4 bg-white rounded-2xl border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition">
+            <span class="w-9 h-9 rounded-xl bg-purple-50 text-purple-800 flex items-center justify-center text-base shrink-0 border border-purple-100">🚜</span>
+            <div>
+              <span class="text-xs font-bold text-stone-900 block">{{ langService.isMarathi() ? 'शेतकरी संवाद व शिक्षण' : 'Farmer Learning & Tours' }}</span>
+              <span class="text-[11px] text-stone-500">{{ langService.isMarathi() ? 'शेती पद्धतींची प्रत्यक्ष माहिती' : 'Hands-on agricultural tour' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 flex items-center gap-4">
+          <a routerLink="/about" class="inline-flex items-center gap-2 text-xs sm:text-sm font-black text-emerald-800 hover:text-emerald-950 transition group">
+            <span>{{ langService.t('btn.readMore') }}</span>
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Image with Badge -->
+      <div class="relative">
+        <div class="rounded-3xl overflow-hidden shadow-2xl border border-stone-200/80 aspect-4/3 group">
+          <img 
+            src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?w=800&auto=format&fit=crop&q=80" 
+            alt="Visawa Agro Farm" 
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="absolute -bottom-6 -left-6 bg-[#0D3B1C]/95 backdrop-blur-md text-white p-5 sm:p-6 rounded-3xl shadow-2xl border border-amber-400/30 hidden sm:flex items-center gap-4 animate-fade-up">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400/20 text-amber-300 flex items-center justify-center font-black text-2xl border border-amber-400/30">
+            🌱
+          </div>
+          <div>
+            <div class="text-base font-black text-white">बाबांचा मळा</div>
+            <div class="text-xs text-emerald-200 font-medium">100% Authentic Rural Experience</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 3. Experiences & Activities (Luxury Retreat Cards) -->
+<section class="py-24 bg-white relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-stone-100 pb-6">
+      <div class="space-y-2">
+        <span class="inline-block px-4 py-1 bg-emerald-50 text-emerald-800 text-xs font-bold rounded-full border border-emerald-200">
+          {{ langService.t('exp.badge') }}
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black text-stone-900 tracking-tight">{{ langService.t('exp.title') }}</h2>
+        <p class="text-xs sm:text-sm text-stone-600 font-normal">{{ langService.t('exp.subtitle') }}</p>
+      </div>
+      <a routerLink="/experiences" class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 font-bold text-xs rounded-xl border border-emerald-200 transition group shrink-0">
+        <span>{{ langService.t('exp.viewAll') }}</span>
+        <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+
+    @if (activitiesLoading()) {
+      <app-loading-spinner [message]="langService.t('exp.loading')"></app-loading-spinner>
+    } @else if (activities().length === 0) {
+      <app-empty-state [title]="langService.t('state.noActivities')"></app-empty-state>
+    } @else {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        @for (act of activities().slice(0, 4); track act.id) {
+          <div class="bg-white rounded-3xl border border-stone-200/80 shadow-[0_10px_30px_rgba(13,59,28,0.06)] hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group agro-card">
+            <!-- Activity Image Container with Fixed 16:10 Aspect Ratio -->
+            <div class="relative h-56 bg-stone-100 overflow-hidden">
+              <img 
+                [src]="getActivityImage(act)" 
+                [alt]="act.title || 'Visawa Activity'"
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/20"></div>
+              
+              @if (act.icon) {
+                <div class="absolute top-3.5 left-3.5 w-10 h-10 rounded-2xl bg-[#0D3B1C]/90 backdrop-blur-md text-emerald-300 flex items-center justify-center text-xl shadow-lg border border-emerald-500/30">
+                  {{ act.icon }}
+                </div>
+              }
+              <div class="absolute top-3.5 right-3.5 px-3 py-1 bg-[#0D3B1C]/85 backdrop-blur-md text-amber-300 text-[11px] font-bold rounded-full shadow border border-amber-400/30">
+                {{ langService.isMarathi() ? 'बाबांचा मळा' : 'Babacha Mala' }}
+              </div>
+
+              <!-- Signature Activity Tag -->
+              <div class="absolute bottom-3 left-3.5 right-3.5">
+                <span class="px-2.5 py-1 bg-black/40 backdrop-blur-md rounded-lg text-white font-bold text-[11px] tracking-wide border border-white/15">
+                  ⭐ {{ langService.isMarathi() ? 'खास उपक्रम' : 'Signature Activity' }}
+                </span>
+              </div>
+            </div>
+
+            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <h3 class="text-base font-black text-stone-900 group-hover:text-emerald-800 transition-colors leading-snug">
+                  {{ act.title }}
+                </h3>
+                <p class="text-xs text-stone-600 mt-2 line-clamp-3 leading-relaxed font-normal">
+                  {{ act.short_description || act.description }}
+                </p>
+              </div>
+
+              <div class="pt-3 border-t border-stone-100">
+                <button 
+                  type="button"
+                  (click)="enquireActivityOnWhatsApp(act, $event)"
+                  class="w-full py-2.5 bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md shadow-emerald-950/15 transition transform hover:scale-[1.02] flex items-center justify-center gap-2 cursor-pointer border border-emerald-700/50">
+                  <span class="text-[#25D366]"><svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 00-3.48-8.413z"/></svg></span>
+                  <span>{{ langService.isMarathi() ? 'व्हॉट्सॲपवर माहिती विचारा' : 'Enquire on WhatsApp' }}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Centered View All Experiences CTA -->
+      <div class="text-center pt-6">
+        <a 
+          routerLink="/experiences" 
+          class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#0D3B1C] hover:bg-emerald-900 text-amber-300 hover:text-amber-200 font-black text-sm rounded-2xl shadow-xl shadow-emerald-950/20 transition-all duration-300 transform hover:scale-105 border border-amber-400/30">
+          <span>🌿</span>
+          <span>{{ langService.isMarathi() ? 'सर्व १०+ उपक्रम व अनुभव पहा' : 'View All 10+ Experiences & Activities' }}</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- 4. Featured Tour Packages (Luxury Pricing Layout on Soft Cream) -->
+<section class="py-24 bg-[#FAF8F2] relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-stone-200/80 pb-6">
+      <div class="space-y-2">
+        <span class="inline-block px-4 py-1 bg-amber-100 text-amber-900 text-xs font-bold rounded-full border border-amber-300">
+          {{ langService.t('packages.badge') }}
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black text-stone-900 tracking-tight">{{ langService.t('packages.title') }}</h2>
+        <p class="text-xs sm:text-sm text-stone-600 font-normal">{{ langService.t('packages.subtitle') }}</p>
+      </div>
+      <a routerLink="/packages" class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-white hover:bg-stone-50 text-emerald-900 font-bold text-xs rounded-xl border border-stone-200 shadow-sm transition group shrink-0">
+        <span>{{ langService.t('packages.viewAll') }}</span>
+        <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+
+    @if (packagesLoading()) {
+      <app-loading-spinner [message]="langService.t('packages.loading')"></app-loading-spinner>
+    } @else if (packages().length === 0) {
+      <app-empty-state [title]="langService.t('packages.empty')"></app-empty-state>
+    } @else {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (pkg of packages().slice(0, 3); track pkg.id; let i = $index) {
+          <div class="bg-white rounded-3xl border border-stone-200/80 shadow-[0_10px_35px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col group agro-card relative">
+            
+            <!-- Most Popular Gold Ribbon on First Card -->
+            @if (i === 0) {
+              <div class="absolute top-0 right-0 z-20 overflow-hidden w-36 h-36 pointer-events-none">
+                <div class="absolute transform rotate-45 bg-gradient-to-r from-amber-500 to-amber-600 text-stone-950 text-[10px] font-black py-1 right-[-35px] top-[22px] w-[140px] text-center shadow-md">
+                  ★ {{ langService.isMarathi() ? 'सर्वाधिक पसंती' : 'Most Popular' }}
+                </div>
+              </div>
+            }
+
+            <!-- Package Image with Duration and Price -->
+            <div class="relative h-64 bg-stone-100 overflow-hidden">
+              <img 
+                [src]="getPackageImage(pkg)" 
+                [alt]="pkg.title"
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+              
+              @if (pkg.duration) {
+                <span class="absolute top-4 left-4 px-3.5 py-1.5 bg-[#0D3B1C]/85 backdrop-blur-md text-emerald-100 text-xs font-bold rounded-full border border-emerald-500/30 shadow-md">
+                  ⏳ {{ pkg.duration }}
+                </span>
+              }
+
+              <!-- Floating Price Badge -->
+              <div class="absolute bottom-4 right-4 px-4 py-2 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-stone-950 rounded-2xl shadow-xl flex items-baseline gap-1.5 border border-amber-300/40">
+                @if (pkg.discounted_price) {
+                  <span class="text-[11px] text-stone-900/70 line-through">₹{{ pkg.price }}</span>
+                  <span class="text-base font-black">₹{{ pkg.discounted_price }}</span>
+                } @else {
+                  <span class="text-base font-black">₹{{ pkg.price }}</span>
+                }
+              </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <a [routerLink]="['/packages', pkg.slug]">
+                  <h3 class="text-lg font-black text-stone-900 group-hover:text-emerald-800 transition-colors">
+                    {{ pkg.title }}
+                  </h3>
+                </a>
+                <p class="text-xs text-stone-600 line-clamp-2 leading-relaxed font-normal">
+                  {{ pkg.short_description || pkg.description }}
+                </p>
+
+                <!-- Inclusions -->
+                <div class="flex flex-wrap gap-1.5 pt-2">
+                  <span class="px-2.5 py-1 bg-emerald-50 text-emerald-900 text-[10px] font-bold rounded-lg border border-emerald-200">
+                    ✓ {{ langService.isMarathi() ? 'अमर्यादित जेवण' : 'Meals Included' }}
+                  </span>
+                  <span class="px-2.5 py-1 bg-emerald-50 text-emerald-900 text-[10px] font-bold rounded-lg border border-emerald-200">
+                    ✓ {{ langService.isMarathi() ? 'सर्व शेती खेळ' : 'Farm Activities' }}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="pt-4 border-t border-stone-100 flex items-center justify-between gap-3">
+                <a [routerLink]="['/packages', pkg.slug]" class="text-xs font-black text-emerald-800 hover:text-emerald-950 inline-flex items-center gap-1 group/btn">
+                  <span>{{ langService.t('btn.viewDetails') }}</span>
+                  <svg class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                </a>
+                <button 
+                  type="button"
+                  (click)="bookOnWhatsApp(pkg, $event)"
+                  class="px-4 py-2.5 bg-emerald-800 hover:bg-emerald-700 text-white text-xs font-black rounded-xl shadow-md shadow-emerald-950/15 transition transform hover:scale-105 flex items-center gap-1.5 cursor-pointer border border-emerald-700/50">
+                  <span class="text-[#25D366]"><svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 00-3.48-8.413z"/></svg></span>
+                  <span>{{ langService.t('btn.bookPackage') }}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Centered View All Packages CTA Button -->
+      <div class="text-center pt-6">
+        <a 
+          routerLink="/packages" 
+          class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#0D3B1C] hover:bg-emerald-900 text-amber-300 hover:text-amber-200 font-black text-sm rounded-2xl shadow-xl shadow-emerald-950/20 transition-all duration-300 transform hover:scale-105 border border-amber-400/30">
+          <span>🎁</span>
+          <span>{{ langService.isMarathi() ? 'सर्व ६ टूर पॅकेजेस व दर पहा' : 'View All 6 Tour Packages & Pricing' }}</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- 5. Signature Traditional Dining Showcase (Authentic Maharashtrian Cuisine) -->
+<section id="dining-showcase" class="py-24 bg-[#FAF8F2] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    
+    <!-- Section Header (Desktop: Horizontal with Right CTA | Mobile: Stacked) -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-stone-200/80 pb-6">
+      <div class="space-y-3">
+        <!-- Gold-toned Editorial Badge -->
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-400/25 border border-amber-500/40 rounded-full text-xs font-black text-[#0D3B1C] uppercase tracking-wider shadow-xs">
+          <span>🍽️</span>
+          <span>{{ langService.t('dining.badge') }}</span>
+        </span>
+        
+        <!-- Primary Visual Heading -->
+        <h2 class="text-2xl sm:text-4xl font-black text-[#0D3B1C] tracking-tight">
+          {{ langService.t('dining.title') }}
+        </h2>
+        
+        <!-- Description -->
+        <p class="text-xs sm:text-sm text-stone-600 max-w-2xl font-normal leading-relaxed">
+          {{ langService.t('dining.subtitle') }}
+        </p>
+      </div>
+
+      <!-- Right-Aligned Premium Dining CTA -->
+      <a 
+        routerLink="/contact" 
+        class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0D3B1C] hover:bg-emerald-900 text-amber-300 hover:text-amber-200 font-bold text-xs sm:text-sm rounded-xl shadow-lg shadow-emerald-950/20 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] group shrink-0 border border-amber-400/30 w-full sm:w-auto">
+        <span>{{ langService.t('dining.cta') }}</span>
+        <span class="group-hover:translate-x-1 transition-transform">→</span>
+      </a>
+    </div>
+
+    <!-- 6 Premium Dining Cards (Equal Height Responsive Grid) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      
+      <!-- Card 1: Authentic Maharashtrian Cuisine -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-[0_10px_30px_rgba(13,59,28,0.06)] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col h-full">
+        <div class="aspect-[16/10] overflow-hidden bg-stone-100 relative">
+          <img 
+            src="images/authentic-maharashtrian-cuisine.png" 
+            alt="Authentic Maharashtrian Cuisine - Gavran Thali with Bhakri and Pithla" 
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-3.5">
+          <div class="space-y-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 text-[#0D3B1C] text-xs font-black rounded-full shadow-xs">
+              🍛 {{ langService.t('dining.item1Badge') }}
+            </span>
+            <h3 class="text-lg sm:text-xl font-black text-[#0D3B1C] group-hover:text-emerald-700 transition-colors leading-snug">
+              {{ langService.t('dining.item1Title') }}
+            </h3>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+            {{ langService.t('dining.item1Desc') }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Traditional Village Breakfast -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-[0_10px_30px_rgba(13,59,28,0.06)] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col h-full">
+        <div class="aspect-[16/10] overflow-hidden bg-stone-100 relative">
+          <img 
+            src="images/traditional-village-breakfast.jpg" 
+            alt="Traditional Village Breakfast - Thalipeeth, Curd and Tea" 
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-3.5">
+          <div class="space-y-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 text-[#0D3B1C] text-xs font-black rounded-full shadow-xs">
+              🌅 {{ langService.t('dining.item2Badge') }}
+            </span>
+            <h3 class="text-lg sm:text-xl font-black text-[#0D3B1C] group-hover:text-emerald-700 transition-colors leading-snug">
+              {{ langService.t('dining.item2Title') }}
+            </h3>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+            {{ langService.t('dining.item2Desc') }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: Wood-Fired Misal -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-[0_10px_30px_rgba(13,59,28,0.06)] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col h-full">
+        <div class="aspect-[16/10] overflow-hidden bg-stone-100 relative">
+          <img 
+            src="images/wood-fired-misal.jpg" 
+            alt="Authentic Wood-Fired Misal Pav" 
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-3.5">
+          <div class="space-y-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 text-[#0D3B1C] text-xs font-black rounded-full shadow-xs">
+              🔥 {{ langService.t('dining.item3Badge') }}
+            </span>
+            <h3 class="text-lg sm:text-xl font-black text-[#0D3B1C] group-hover:text-emerald-700 transition-colors leading-snug">
+              {{ langService.t('dining.item3Title') }}
+            </h3>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+            {{ langService.t('dining.item3Desc') }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4: High Tea -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-[0_10px_30px_rgba(13,59,28,0.06)] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col h-full">
+        <div class="aspect-[16/10] overflow-hidden bg-stone-100 relative">
+          <img 
+            src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800&auto=format&fit=crop&q=80" 
+            alt="High Tea and Countryside Snacks" 
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-3.5">
+          <div class="space-y-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 text-[#0D3B1C] text-xs font-black rounded-full shadow-xs">
+              ☕ {{ langService.t('dining.item4Badge') }}
+            </span>
+            <h3 class="text-lg sm:text-xl font-black text-[#0D3B1C] group-hover:text-emerald-700 transition-colors leading-snug">
+              {{ langService.t('dining.item4Title') }}
+            </h3>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+            {{ langService.t('dining.item4Desc') }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 5: Seasonal Farm-Fresh Fruits -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-[0_10px_30px_rgba(13,59,28,0.06)] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col h-full">
+        <div class="aspect-[16/10] overflow-hidden bg-stone-100 relative">
+          <img 
+            src="images/seasonal-farm-fresh-fruits.jpg" 
+            alt="Seasonal Farm-Fresh Organic Fruits" 
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-3.5">
+          <div class="space-y-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 text-[#0D3B1C] text-xs font-black rounded-full shadow-xs">
+              🍍 {{ langService.t('dining.item5Badge') }}
+            </span>
+            <h3 class="text-lg sm:text-xl font-black text-[#0D3B1C] group-hover:text-emerald-700 transition-colors leading-snug">
+              {{ langService.t('dining.item5Title') }}
+            </h3>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+            {{ langService.t('dining.item5Desc') }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 6: Special Group Menus -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-[0_10px_30px_rgba(13,59,28,0.06)] hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 group flex flex-col h-full">
+        <div class="aspect-[16/10] overflow-hidden bg-stone-100 relative">
+          <img 
+            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&auto=format&fit=crop&q=80" 
+            alt="Special Group Menus and Outing Dining" 
+            loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-3.5">
+          <div class="space-y-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 border border-amber-300 text-[#0D3B1C] text-xs font-black rounded-full shadow-xs">
+              👨‍👩‍👧‍👦 {{ langService.t('dining.item6Badge') }}
+            </span>
+            <h3 class="text-lg sm:text-xl font-black text-[#0D3B1C] group-hover:text-emerald-700 transition-colors leading-snug">
+              {{ langService.t('dining.item6Title') }}
+            </h3>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+            {{ langService.t('dining.item6Desc') }}
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 6. Upcoming Events & Group Outings Section -->
+<section class="py-24 bg-[#FAF8F2] relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-stone-200/80 pb-6">
+      <div class="space-y-2">
+        <span class="inline-block px-4 py-1 bg-purple-100 text-purple-900 text-xs font-bold rounded-full border border-purple-300">
+          {{ langService.t('events.badge') }}
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black text-stone-900 tracking-tight">{{ langService.t('events.title') }}</h2>
+        <p class="text-xs sm:text-sm text-stone-600 font-normal">{{ langService.t('events.subtitle') }}</p>
+      </div>
+      <a routerLink="/events" class="inline-flex items-center gap-1.5 px-5 py-2.5 bg-white hover:bg-stone-50 text-emerald-900 font-bold text-xs rounded-xl border border-stone-200 shadow-sm transition group shrink-0">
+        <span>{{ langService.t('events.viewAll') }}</span>
+        <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+
+    @if (eventsLoading()) {
+      <app-loading-spinner></app-loading-spinner>
+    } @else if (events().length === 0) {
+      <app-empty-state [title]="langService.t('state.noEvents')"></app-empty-state>
+    } @else {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (evt of events().slice(0, 3); track evt.id) {
+          <div class="bg-white border border-stone-200/80 rounded-3xl overflow-hidden shadow-[0_10px_35px_rgba(0,0,0,0.04)] hover:shadow-2xl transition-all duration-500 flex flex-col group agro-card">
+            <div class="relative h-60 bg-stone-100 overflow-hidden">
+              <img 
+                [src]="getEventImage(evt)" 
+                [alt]="evt.title"
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute top-4 left-4 px-3.5 py-1.5 bg-[#0D3B1C]/90 backdrop-blur-md text-white text-xs font-bold rounded-full shadow-md border border-emerald-500/30">
+                📅 {{ evt.event_date | date:'mediumDate' }}
+              </div>
+              @if (evt.price) {
+                <div class="absolute bottom-4 right-4 px-3.5 py-1.5 bg-amber-400 text-stone-950 text-xs font-black rounded-xl shadow-lg border border-amber-300">
+                  {{ langService.isMarathi() ? 'प्रारंभिक दर ₹' : 'Starts at ₹' }}{{ evt.price }}
+                </div>
+              }
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <h3 class="text-lg font-black text-stone-900 group-hover:text-emerald-800 transition-colors">
+                  {{ evt.title }}
+                </h3>
+                @if (evt.location) {
+                  <p class="text-xs text-emerald-800 font-semibold mt-1">📍 {{ evt.location }}</p>
+                }
+                <p class="text-xs text-stone-600 mt-2 line-clamp-2 leading-relaxed font-normal">
+                  {{ evt.short_description || evt.description }}
+                </p>
+              </div>
+
+              <div class="pt-3 border-t border-stone-100 flex items-center justify-between">
+                <a [routerLink]="['/events', evt.slug]" class="text-xs font-bold text-emerald-800 hover:text-emerald-950 inline-flex items-center gap-1 group/btn">
+                  <span>{{ langService.t('btn.viewDetails') }}</span>
+                  <svg class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Centered View All Events CTA Button -->
+      <div class="text-center pt-6">
+        <a 
+          routerLink="/events" 
+          class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#0D3B1C] hover:bg-emerald-900 text-amber-300 hover:text-amber-200 font-black text-sm rounded-2xl shadow-xl shadow-emerald-950/20 transition-all duration-300 transform hover:scale-105 border border-amber-400/30">
+          <span>🎉</span>
+          <span>{{ langService.isMarathi() ? 'सर्व ६ कार्यक्रम व सोहळे पहा' : 'View All 6 Events & Celebrations' }}</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- 7. Photo Gallery Preview Section (Editorial Natural Style on Soft Cream) -->
+<section class="py-24 bg-[#FAF8F2] border-y border-stone-200/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div class="space-y-2">
+        <span class="inline-flex items-center gap-1.5 px-4 py-1 bg-emerald-100/90 text-emerald-900 text-xs font-black rounded-full border border-emerald-200 shadow-sm">
+          <span>📸</span>
+          <span>{{ langService.t('gallery.badge') }}</span>
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black text-stone-900 tracking-tight">
+          {{ langService.t('gallery.title') }}
+        </h2>
+        <p class="text-xs sm:text-sm text-stone-600 max-w-2xl font-normal">
+          {{ langService.t('gallery.subtitle') }}
+        </p>
+      </div>
+
+      <a routerLink="/gallery" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-900 hover:text-emerald-950 transition group shrink-0">
+        <span>{{ langService.t('gallery.viewAll') }}</span>
+        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+
+    @if (galleryLoading()) {
+      <app-loading-spinner></app-loading-spinner>
+    } @else if (gallery().length === 0) {
+      <app-empty-state [title]="langService.t('state.noGallery')"></app-empty-state>
+    } @else {
+      <!-- 5-Image Balanced Editorial Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 sm:gap-6">
+        <!-- 1 Large Featured Left Image -->
+        @if (gallery()[0]; as heroPhoto) {
+          <div 
+            (click)="openLightbox(heroPhoto, 0)"
+            class="relative lg:col-span-2 lg:row-span-2 h-72 sm:h-96 lg:h-[500px] rounded-3xl overflow-hidden bg-stone-200 cursor-pointer group shadow-lg hover:shadow-2xl transition-all duration-500 border border-stone-200/80">
+            <img 
+              [src]="heroPhoto.image" 
+              [alt]="heroPhoto.title || 'Visawa Agro Tourism'" 
+              loading="lazy"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity p-6 sm:p-8 flex flex-col justify-between">
+              <div class="self-start">
+                <span class="px-3.5 py-1 bg-amber-400 text-stone-950 text-[11px] font-black rounded-full shadow-md">
+                  ★ {{ langService.isMarathi() ? 'प्रमुख दृश्य' : 'Featured' }}
+                </span>
+              </div>
+              <div class="space-y-1.5">
+                @if (heroPhoto.category) {
+                  <span class="text-[11px] font-bold text-amber-300 uppercase tracking-wider block">{{ heroPhoto.category }}</span>
+                }
+                <h3 class="text-base sm:text-2xl font-black text-white drop-shadow-md">{{ heroPhoto.title }}</h3>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- 4 Supporting Right Images (2x2 Grid) -->
+        <div class="lg:col-span-2 grid grid-cols-2 gap-5 sm:gap-6">
+          @for (photo of gallery().slice(1, 5); track photo.id; let i = $index) {
+            <div 
+              (click)="openLightbox(photo, i + 1)"
+              class="relative h-44 sm:h-52 lg:h-[238px] rounded-3xl overflow-hidden bg-stone-200 cursor-pointer group shadow-md hover:shadow-xl transition-all duration-500 border border-stone-200/80">
+              <img 
+                [src]="photo.image" 
+                [alt]="photo.title || 'Visawa Agro Tourism'" 
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+              
+              <div class="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+                <p class="text-xs font-bold text-white line-clamp-1">{{ photo.title }}</p>
+                @if (photo.category) {
+                  <p class="text-[10px] text-amber-300 font-semibold">{{ photo.category }}</p>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Bottom View All Gallery Button -->
+      <div class="text-center pt-2">
+        <a 
+          routerLink="/gallery" 
+          class="inline-flex items-center gap-2.5 px-8 py-4 bg-[#0D3B1C] hover:bg-emerald-900 text-amber-300 hover:text-amber-200 font-black text-xs sm:text-sm rounded-2xl shadow-xl shadow-emerald-950/20 transition-all duration-300 transform hover:scale-105 border border-amber-400/30">
+          <span>📸</span>
+          <span>{{ langService.isMarathi() ? 'संपूर्ण फोटो गॅलरी एक्सप्लोर करा' : 'Explore Full Photo Gallery' }}</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- 8. Guest Testimonials Section (Pure White with Refined Review Cards) -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div class="text-center max-w-2xl mx-auto space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-100/90 text-amber-950 text-xs font-black rounded-full border border-amber-300 shadow-sm">
+        <span>★ 4.9/5 Google Rating</span>
+        <span>•</span>
+        <span>1,200+ {{ langService.isMarathi() ? 'आनंदी कुटुंबे' : 'Happy Families' }}</span>
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-black text-stone-900 tracking-tight">{{ langService.t('testimonials.title') }}</h2>
+      <p class="text-xs sm:text-sm text-stone-600 font-normal">{{ langService.t('testimonials.subtitle') }}</p>
+    </div>
+
+    @if (testimonialsLoading()) {
+      <app-loading-spinner></app-loading-spinner>
+    } @else if (testimonials().length === 0) {
+      <app-empty-state [title]="langService.t('state.noTestimonials')"></app-empty-state>
+    } @else {
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        @for (item of testimonials().slice(0, 3); track item.id; let i = $index) {
+          <div class="bg-[#FAF8F2] rounded-3xl p-7 sm:p-8 border border-stone-200/80 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-500 flex flex-col justify-between space-y-6 agro-card">
+            <div class="space-y-3.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center text-amber-400 text-sm tracking-widest">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <span class="px-2.5 py-0.5 bg-emerald-100/80 text-emerald-900 text-[10px] font-bold rounded-full border border-emerald-200">
+                  {{ i === 0 ? 'Pune' : (i === 1 ? 'Mumbai' : 'Satara') }}
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-stone-700 leading-relaxed italic font-normal">
+                "{{ item.review }}"
+              </p>
+            </div>
+
+            <div class="flex items-center gap-3.5 pt-4 border-t border-stone-200/60">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-[#0D3B1C] to-emerald-700 text-amber-300 flex items-center justify-center font-black text-sm shadow-md shrink-0 border border-amber-400/20">
+                {{ getTestimonialInitials(item) }}
+              </div>
+              <div>
+                <h4 class="text-xs sm:text-sm font-black text-stone-900">{{ getTestimonialName(item) }}</h4>
+                <p class="text-[10px] sm:text-xs text-stone-500 font-medium">{{ getTestimonialDesignation(item) }}</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- 9. Driving Distance Matrix & Route Guide (Dark Forest Green #0D3B1C) -->
+<section class="py-20 bg-[#0D3B1C] text-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
+    <div class="text-center max-w-2xl mx-auto space-y-2">
+      <span class="inline-flex items-center gap-1.5 px-4 py-1 bg-amber-400/20 text-amber-300 text-xs font-black rounded-full border border-amber-400/30">
+        <span>📍</span>
+        <span>{{ langService.isMarathi() ? 'सहज प्रवास मार्ग' : 'Easy Route & Driving Distance' }}</span>
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+        {{ langService.isMarathi() ? 'विसावा ॲग्रो टुरिझम येथे कसे पोहोचावे?' : 'How to Reach Visawa Agro Tourism' }}
+      </h2>
+      <p class="text-xs sm:text-sm text-emerald-200/90 font-normal">
+        {{ langService.isMarathi() ? 'पुणे, मुंबई आणि सातारा येथून उत्तम हायवे कनेक्टिव्हिटी आणि निसर्गरम्य रस्ता.' : 'Smooth highway drive with scenic countryside views from major Maharashtra cities.' }}
+      </p>
+    </div>
+
+    <!-- 4 City Distance Pills -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+      <div class="p-5 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 text-center space-y-1.5 hover:border-amber-400/40 transition">
+        <span class="text-xs text-amber-300 font-bold block">🚗 {{ langService.isMarathi() ? 'पुणे येथून' : 'From Pune' }}</span>
+        <div class="text-xl font-black text-white">~1.5 {{ langService.isMarathi() ? 'तास' : 'Hours' }}</div>
+        <span class="text-[11px] text-emerald-200/80 block">65 km • NH4 Highway</span>
+      </div>
+
+      <div class="p-5 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 text-center space-y-1.5 hover:border-amber-400/40 transition">
+        <span class="text-xs text-amber-300 font-bold block">🚗 {{ langService.isMarathi() ? 'मुंबई येथून' : 'From Mumbai' }}</span>
+        <div class="text-xl font-black text-white">~3.5 {{ langService.isMarathi() ? 'तास' : 'Hours' }}</div>
+        <span class="text-[11px] text-emerald-200/80 block">190 km • Expressway</span>
+      </div>
+
+      <div class="p-5 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 text-center space-y-1.5 hover:border-amber-400/40 transition">
+        <span class="text-xs text-amber-300 font-bold block">🚗 {{ langService.isMarathi() ? 'सातारा येथून' : 'From Satara' }}</span>
+        <div class="text-xl font-black text-white">~45 {{ langService.isMarathi() ? 'मिनिटे' : 'Minutes' }}</div>
+        <span class="text-[11px] text-emerald-200/80 block">40 km • Direct Road</span>
+      </div>
+
+      <div class="p-5 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 text-center space-y-1.5 hover:border-amber-400/40 transition">
+        <span class="text-xs text-amber-300 font-bold block">🚗 {{ langService.isMarathi() ? 'नाशिक येथून' : 'From Nashik' }}</span>
+        <div class="text-xl font-black text-white">~3.5 {{ langService.isMarathi() ? 'तास' : 'Hours' }}</div>
+        <span class="text-[11px] text-emerald-200/80 block">180 km • Highway Route</span>
+      </div>
+    </div>
+
+    <!-- Navigation & Google Maps CTA -->
+    <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+      <a 
+        href="https://maps.google.com/?q=Visawa+Agro+Tourism+Babacha+Mala" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="px-8 py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-stone-950 font-black text-xs sm:text-sm rounded-2xl shadow-xl shadow-amber-500/20 transition transform hover:scale-105 flex items-center gap-2">
+        <span>🗺️</span>
+        <span>{{ langService.isMarathi() ? 'गुगल मॅप्सवर दिशा पहा' : 'Get Google Maps Directions' }}</span>
+      </a>
+
+      <a 
+        routerLink="/contact"
+        class="px-7 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-2xl border border-white/20 transition flex items-center gap-2">
+        <span>📍</span>
+        <span>{{ langService.isMarathi() ? 'संपर्क व पत्ता माहिती' : 'Contact & Address Details' }}</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 10. FAQ Accordion Section (Soft Cream Background) -->
+<section class="py-20 bg-[#FAF8F2]">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div class="text-center space-y-2">
+      <span class="inline-block px-4 py-1 bg-emerald-100 text-emerald-900 text-xs font-bold rounded-full border border-emerald-200">
+        {{ langService.t('faq.badge') }}
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-black text-stone-900 tracking-tight">{{ langService.t('faq.title') }}</h2>
+      <p class="text-xs sm:text-sm text-stone-600 font-normal">{{ langService.t('faq.subtitle') }}</p>
+    </div>
+
+    <div class="space-y-4">
+      @for (faq of faqs; track faq.id) {
+        <div class="bg-white rounded-2xl border border-stone-200/80 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md">
+          <button 
+            type="button"
+            (click)="toggleFaq(faq.id)"
+            class="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-stone-900 hover:text-emerald-800 transition cursor-pointer">
+            <span class="text-xs sm:text-sm font-black">{{ langService.t(faq.qKey) }}</span>
+            <span class="w-7 h-7 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center shrink-0 text-xs font-black transition-transform duration-300 border border-emerald-100" [class.rotate-180]="openFaqId() === faq.id">
+              ↓
+            </span>
+          </button>
+          @if (openFaqId() === faq.id) {
+            <div class="px-4 sm:px-5 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3 animate-fade-up font-normal">
+              {{ langService.t(faq.aKey) }}
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Fullscreen Lightbox Modal -->
+<app-lightbox-modal
+  [isOpen]="lightboxOpen()"
+  [imageUrl]="activePhotoUrl()"
+  [title]="activePhotoTitle()"
+  [category]="activePhotoCategory()"
+  [currentIndex]="activePhotoIndex()"
+  [totalCount]="gallery().length"
+  (prev)="prevPhoto()"
+  (next)="nextPhoto()"
+  (close)="lightboxOpen.set(false)">
+</app-lightbox-modal>

@@ -1,0 +1,45 @@
+<div class="py-12 bg-stone-50 min-h-screen">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 animate-fade-up">
+    <a routerLink="/blogs" class="inline-flex items-center gap-2 text-xs font-bold text-stone-600 hover:text-emerald-700 transition group">
+      <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      <span>{{ langService.t('nav.blogs') }}</span>
+    </a>
+
+    @if (loading()) {
+      <app-loading-spinner></app-loading-spinner>
+    } @else if (error() || !blog()) {
+      <app-empty-state 
+        [title]="langService.t('state.noBlogs')" 
+        [description]="langService.t('state.errorLoading')">
+      </app-empty-state>
+    } @else {
+      <article class="bg-white rounded-3xl border border-stone-200 shadow-xl overflow-hidden">
+        <div class="relative h-80 sm:h-96 bg-stone-900 overflow-hidden">
+          <img 
+            [src]="blog()!.featured_image || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&auto=format&fit=crop&q=80'" 
+            [alt]="blog()!.title"
+            class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent"></div>
+          
+          <div class="absolute bottom-6 left-6 right-6 space-y-2">
+            <h1 class="text-2xl sm:text-4xl font-black text-white leading-tight drop-shadow-md">
+              {{ blog()!.title }}
+            </h1>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-10 space-y-6">
+          @if (blog()!.short_description) {
+            <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl text-xs sm:text-sm font-medium text-emerald-950 leading-relaxed italic">
+              {{ blog()!.short_description }}
+            </div>
+          }
+
+          <div class="text-sm sm:text-base text-stone-700 leading-relaxed space-y-4 whitespace-pre-line">
+            {{ blog()!.description }}
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</div>
