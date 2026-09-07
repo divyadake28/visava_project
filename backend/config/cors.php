@@ -20,7 +20,8 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => array_values(array_unique(array_filter([
-        env('FRONTEND_URL', 'http://localhost:4200'),
+        env('FRONTEND_URL', 'https://visava-project.onrender.com'),
+        'https://visava-project.onrender.com',
         'http://localhost:4200',
         'http://127.0.0.1:4200',
     ]))),
