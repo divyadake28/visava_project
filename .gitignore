@@ -43,3 +43,5 @@ backend/bootstrap/cache/*
 
 .DS_Store
 Thumbs.db
+*.zip
+backend/infinityfree/
