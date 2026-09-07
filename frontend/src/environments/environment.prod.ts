@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://127.0.0.1:8000/api/v1',
+  apiUrl: 'https://visawa.rf.gd/api/v1',
   defaultLanguage: 'mr' as const
 };
