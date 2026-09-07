@@ -11,6 +11,17 @@ export interface Blog {
   description_mr?: string;
   description_en?: string;
   featured_image?: string | null;
+  blog_video?: string | null;
+  video_thumbnail?: string | null;
+  youtube_url?: string | null;
+  youtube_id?: string | null;
+  instagram_url?: string | null;
+  has_media?: {
+    image?: boolean;
+    video?: boolean;
+    youtube?: boolean;
+    instagram?: boolean;
+  };
   status: string;
   created_at?: string;
 }

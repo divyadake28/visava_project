@@ -41,7 +41,15 @@
                 <tbody class="divide-y divide-slate-100">
                     @foreach ($blogs as $blog)
                         <tr class="hover:bg-slate-50/70 transition-colors">
-                            <td class="px-6 py-4 font-semibold text-slate-900">{{ $blog->title }}</td>
+                            <td class="px-6 py-4">
+                                <div class="font-semibold text-slate-900">{{ $blog->title_mr ?: $blog->title_en ?: $blog->title }}</div>
+                                <div class="flex items-center gap-1.5 mt-1 text-[11px] text-slate-400">
+                                    @if($blog->featured_image) <span title="Featured Image">🖼️ Image</span> @endif
+                                    @if($blog->blog_video) <span title="Uploaded Video" class="text-emerald-600 font-semibold">🎥 Video</span> @endif
+                                    @if($blog->youtube_url) <span title="YouTube Video" class="text-red-600 font-semibold">▶ YouTube</span> @endif
+                                    @if($blog->instagram_url) <span title="Instagram Link" class="text-pink-600 font-semibold">📸 Instagram</span> @endif
+                                </div>
+                            </td>
                             <td class="px-6 py-4 text-slate-600">{{ $blog->category ?? 'General' }}</td>
                             <td class="px-6 py-4">
                                 <span class="badge {{ $blog->is_published ? 'badge-published' : 'badge-draft' }}">

@@ -17,7 +17,7 @@ import { LanguageService, LanguageCode } from '../../core/services/language.serv
         [class.text-stone-950]="langService.currentLang() === 'mr'"
         [class.shadow-md]="langService.currentLang() === 'mr'"
         [class.text-emerald-200]="langService.currentLang() !== 'mr'"
-        class="px-3 py-1 text-[11px] font-black rounded-full transition-all duration-200 cursor-pointer">
+        class="px-2.5 sm:px-3 py-1.5 text-[11px] font-black rounded-full transition-all duration-200 cursor-pointer">
         मराठी
       </button>
       <button 
@@ -29,7 +29,7 @@ import { LanguageService, LanguageCode } from '../../core/services/language.serv
         [class.text-stone-950]="langService.currentLang() === 'en'"
         [class.shadow-md]="langService.currentLang() === 'en'"
         [class.text-emerald-200]="langService.currentLang() !== 'en'"
-        class="px-3 py-1 text-[11px] font-black rounded-full transition-all duration-200 cursor-pointer">
+        class="px-2.5 sm:px-3 py-1.5 text-[11px] font-black rounded-full transition-all duration-200 cursor-pointer">
         English
       </button>
     </div>

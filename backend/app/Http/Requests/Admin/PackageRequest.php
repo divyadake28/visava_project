@@ -18,13 +18,11 @@ class PackageRequest extends FormRequest
             'title_en' => 'nullable|required_without:title_mr|string|max:255',
             'duration_mr' => 'nullable|string|max:100',
             'duration_en' => 'nullable|string|max:100',
-            'price' => 'required|numeric|min:0',
-            'discounted_price' => 'nullable|numeric|min:0',
             'short_description_mr' => 'nullable|string',
             'short_description_en' => 'nullable|string',
             'description_mr' => 'nullable|required_without:description_en|string',
             'description_en' => 'nullable|required_without:description_mr|string',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:30720',
             'status' => 'required|in:active,inactive',
         ];
     }

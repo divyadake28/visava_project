@@ -7,8 +7,6 @@ export interface Package {
   duration?: string;
   duration_mr?: string;
   duration_en?: string;
-  price: number;
-  discounted_price?: number | null;
   short_description?: string;
   short_description_mr?: string;
   short_description_en?: string;

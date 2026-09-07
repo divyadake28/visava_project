@@ -16,4 +16,9 @@ export interface EnquiryResponse {
   status: string;
   created_at: string;
   updated_at: string;
+  whatsapp?: {
+    owner_number: string;
+    message: string;
+    url: string;
+  };
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\DiningController;
 use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -35,6 +36,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('events', EventController::class);
     Route::resource('packages', PackageController::class);
     Route::resource('activities', ActivityController::class);
+    Route::resource('dining', DiningController::class);
     Route::resource('galleries', GalleryController::class);
     Route::resource('testimonials', TestimonialController::class);
     Route::resource('enquiries', EnquiryController::class);

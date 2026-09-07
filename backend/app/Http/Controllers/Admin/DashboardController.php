@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\Dining;
 use App\Models\Enquiry;
 use App\Models\Event;
 use App\Models\Gallery;
@@ -24,6 +25,7 @@ class DashboardController extends Controller
             'blogs_count' => Blog::count(),
             'events_count' => Event::count(),
             'packages_count' => Package::count(),
+            'dining_count' => Dining::count(),
             'galleries_count' => Gallery::count(),
             'testimonials_count' => Testimonial::count(),
             'enquiries_count' => Enquiry::count(),

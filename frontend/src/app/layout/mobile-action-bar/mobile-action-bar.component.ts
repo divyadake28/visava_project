@@ -10,13 +10,13 @@ import { SiteSettings } from '../../core/models/setting.model';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <!-- Mobile Sticky Action Bar (Fixed at bottom on < md screens) -->
-    <aside aria-label="Mobile Quick Actions" class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0D3B1C]/98 backdrop-blur-2xl border-t border-emerald-900/80 p-2.5 shadow-2xl">
+    <!-- Mobile Sticky Action Bar (Hidden on mobile screens) -->
+    <aside aria-label="Mobile Quick Actions" class="hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0D3B1C]/98 backdrop-blur-2xl border-t border-emerald-900/80 p-2.5 shadow-2xl">
       <div class="max-w-md mx-auto grid grid-cols-3 gap-2">
         
         <!-- 1. Direct Call Button -->
         <a 
-          [href]="'tel:' + (settings()?.site?.phone || '+919876543210')"
+          [href]="'tel:' + (settings()?.site?.phone || '+919158141414')"
           class="py-2 px-2 bg-white/5 hover:bg-white/10 text-white font-bold text-xs rounded-xl border border-emerald-800/80 transition-all flex flex-col items-center justify-center gap-0.5 text-center active:scale-95 shadow-sm">
           <span class="text-base">📞</span>
           <span class="text-[10px] leading-tight font-bold text-emerald-100">{{ langService.isMarathi() ? 'कॉल करा' : 'Call Resort' }}</span>
@@ -62,9 +62,9 @@ export class MobileActionBarComponent implements OnInit {
   }
 
   getWhatsAppUrl(): string {
-    const rawPhone = this.settings()?.site?.phone || '+91 98765 43210';
+    const rawPhone = this.settings()?.site?.phone || '+91 91581 41414';
     const digits = rawPhone ? rawPhone.replace(/\D/g, '') : '';
-    const phone = digits.length === 10 ? `91${digits}` : (digits || '919876543210');
+    const phone = digits.length === 10 ? `91${digits}` : (digits || '919158141414');
     const msg = this.langService.isMarathi()
       ? 'नमस्कार, मला विसावा ॲग्रो टुरिझम – बाबांचा मळा येथे बुकिंग व चौकशी करायची आहे.'
       : 'Hello, I would like to enquire about Visawa Agro Tourism – Babacha Mala bookings.';

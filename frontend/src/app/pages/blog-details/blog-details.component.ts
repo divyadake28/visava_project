@@ -1,6 +1,7 @@
-﻿import { Component, inject, signal, OnInit, effect, Input } from '@angular/core';
+import { Component, inject, signal, OnInit, effect, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { LanguageService } from '../../core/services/language.service';
 import { BlogService } from '../../core/services/blog.service';
 import { Blog } from '../../core/models/blog.model';
@@ -17,6 +18,7 @@ export class BlogDetailsComponent implements OnInit {
   langService = inject(LanguageService);
   private route = inject(ActivatedRoute);
   private blogService = inject(BlogService);
+  private sanitizer = inject(DomSanitizer);
 
   @Input() slug = '';
   blog = signal<Blog | null>(null);
@@ -60,5 +62,25 @@ export class BlogDetailsComponent implements OnInit {
         this.loading.set(false);
       }
     });
+  }
+
+  getYouTubeEmbedUrl(videoId?: string | null, url?: string | null): SafeResourceUrl | null {
+    let id = videoId;
+    if (!id && url) {
+      const match = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i);
+      id = match ? match[1] : null;
+    }
+    if (!id) return null;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${id}?rel=0`);
+  }
+
+  getInstagramEmbedUrl(url?: string | null): SafeResourceUrl | null {
+    if (!url) return null;
+    // Normalize trailing slash and append /embed
+    const cleanUrl = url.split('?')[0].replace(/\/+$/, '');
+    if (cleanUrl.includes('/p/') || cleanUrl.includes('/reel/') || cleanUrl.includes('/tv/')) {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(`${cleanUrl}/embed`);
+    }
+    return null;
   }
 }

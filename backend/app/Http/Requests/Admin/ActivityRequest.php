@@ -20,7 +20,7 @@ class ActivityRequest extends FormRequest
             'short_description_en' => 'nullable|string',
             'description_mr' => 'nullable|string',
             'description_en' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:30720',
             'icon' => 'nullable|string|max:50',
             'sort_order' => 'nullable|integer|min:0',
             'is_active' => 'sometimes|boolean',

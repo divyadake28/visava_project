@@ -8,7 +8,7 @@
     <div class="mb-6 flex items-center justify-between border-b border-slate-100 pb-4">
         <div>
             <h2 class="text-lg font-bold text-slate-900">Add Tour / Stay Package</h2>
-            <p class="text-xs text-slate-500">Configure prices and descriptions in Marathi & English</p>
+            <p class="text-xs text-slate-500">Configure duration and descriptions in Marathi & English</p>
         </div>
         <a href="{{ route('admin.packages.index') }}" class="text-xs font-semibold text-slate-600 hover:text-slate-900">&larr; Back to Packages</a>
     </div>

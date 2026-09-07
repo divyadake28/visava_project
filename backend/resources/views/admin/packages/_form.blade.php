@@ -24,21 +24,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        <!-- Price -->
-        <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">किंमत (Regular Price in ₹) <span class="text-rose-500">*</span></label>
-            <input type="number" step="0.01" name="price" value="{{ old('price', $package->price ?? '') }}" required class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:border-purple-500 outline-none" placeholder="1500.00">
-            @error('price') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
-        </div>
-
-        <!-- Discounted Price -->
-        <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">सवलत किंमत (Discounted Price in ₹)</label>
-            <input type="number" step="0.01" name="discounted_price" value="{{ old('discounted_price', $package->discounted_price ?? '') }}" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:border-purple-500 outline-none" placeholder="1200.00">
-            @error('discounted_price') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
-        </div>
-
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <!-- Duration Marathi -->
         <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">कालावधी (मराठी)</label>

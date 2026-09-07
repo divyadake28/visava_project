@@ -42,6 +42,8 @@ class PackageController extends Controller
         $data['description'] = $data['description_en'] ?? $data['description_mr'] ?? null;
         $data['summary'] = $data['short_description_en'] ?? $data['short_description_mr'] ?? null;
         $data['duration'] = $data['duration_en'] ?? $data['duration_mr'] ?? null;
+        $data['price'] = 0;
+        $data['discounted_price'] = null;
         $data['is_active'] = (($data['status'] ?? 'active') === 'active');
 
         Package::create($data);

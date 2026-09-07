@@ -35,58 +35,59 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
             </span>
           </div>
 
-          <div class="flex items-center gap-4 text-[11px]">
-            <a [href]="'tel:' + (settings()?.site?.phone || '+919876543210')" class="hover:text-amber-300 transition flex items-center gap-1.5 text-emerald-100 font-medium">
+          <div class="flex items-center gap-3.5 text-[11px]">
+            <a [href]="'tel:' + (settings()?.site?.phone || '+919158141414')" class="hover:text-amber-300 transition flex items-center gap-1.5 text-emerald-100 font-medium">
               <span>📞</span>
-              <span>{{ settings()?.site?.phone || '+91 98765 43210' }}</span>
+              <span>{{ settings()?.site?.phone || '+91 91581 41414' }}</span>
             </a>
             <span class="text-emerald-800">|</span>
-            <a [href]="getWhatsAppUrl()" target="_blank" class="text-emerald-300 hover:text-amber-300 font-semibold transition flex items-center gap-1.5">
+            <a [href]="getWhatsAppUrl()" target="_blank" rel="noopener noreferrer" class="text-emerald-300 hover:text-amber-300 font-semibold transition flex items-center gap-1.5">
               <span class="w-4 h-4 text-[#25D366] flex items-center justify-center"><svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 00-3.48-8.413z"/></svg></span>
               <span>WhatsApp Direct</span>
+            </a>
+            <span class="text-emerald-800">|</span>
+            <a [href]="settings()?.social?.instagram || 'https://www.instagram.com/visawaagrotourism'" target="_blank" rel="noopener noreferrer" aria-label="Follow Visawa on Instagram" class="text-pink-200 hover:text-amber-300 font-semibold transition flex items-center gap-1.5 group">
+              <span class="w-4 h-4 flex items-center justify-center transform group-hover:scale-110 transition-transform">
+                <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24">
+                  <defs>
+                    <linearGradient id="ig-grad-header" x1="0%" y1="100%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#fdf497" />
+                      <stop offset="5%" stop-color="#fdf497" />
+                      <stop offset="45%" stop-color="#fd5949" />
+                      <stop offset="60%" stop-color="#d6249f" />
+                      <stop offset="90%" stop-color="#285AEB" />
+                    </linearGradient>
+                  </defs>
+                  <path fill="url(#ig-grad-header)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </span>
+              <span>Instagram</span>
             </a>
           </div>
         </div>
       </div>
 
-      <div class="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="w-full max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div 
-          [class.h-16]="isScrolled()"
+          [class.h-14]="isScrolled()"
           [class.h-18]="!isScrolled()"
-          class="flex items-center justify-between gap-3 xl:gap-4 transition-all duration-300">
+          class="flex items-center justify-between xl:justify-center xl:gap-7 2xl:gap-9 transition-all duration-300">
           
-          <!-- Brand Logo & Title (Far Left) -->
-          <a routerLink="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+          <!-- Brand Logo (Far Left on mobile, close to nav on desktop) -->
+          <a routerLink="/" class="flex items-center group shrink-0" aria-label="विसावा ॲग्रो टुरिझम">
             <div 
-              [class.w-9]="isScrolled()"
-              [class.h-9]="isScrolled()"
-              [class.text-lg]="isScrolled()"
-              [class.w-10]="!isScrolled()"
-              [class.h-10]="!isScrolled()"
-              [class.text-xl]="!isScrolled()"
-              class="rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-amber-500 flex items-center justify-center text-white font-black shadow-md shadow-emerald-950/40 group-hover:scale-105 transition-all duration-300 shrink-0 border border-amber-400/20">
-              🌱
-            </div>
-            <div class="shrink-0">
-              <div class="flex items-center gap-1.5">
-                <span 
-                  [class.text-base]="isScrolled()"
-                  [class.text-lg]="!isScrolled()"
-                  class="font-black tracking-tight text-white block leading-tight transition-all duration-300 whitespace-nowrap">
-                  VISAWA
-                </span>
-                <span class="px-1.5 py-0.5 bg-amber-400/15 border border-amber-400/30 rounded-full text-[9px] sm:text-[10px] xl:text-[11px] font-bold text-amber-300 whitespace-nowrap">
-                  बाबांचा मळा
-                </span>
-              </div>
-              <span class="text-[9px] sm:text-[10px] xl:text-[11px] font-semibold text-emerald-300/90 tracking-wider block whitespace-nowrap">
-                Agro Tourism & Resort
-              </span>
+              [class.h-[38px]]="isScrolled()"
+              [class.h-[46px]]="!isScrolled()"
+              class="w-auto rounded-xl overflow-hidden shadow-md group-hover:scale-105 transition-all duration-300 border border-white/10 shrink-0">
+              <img 
+                src="/images/visava_logo.png" 
+                alt="विसावा ॲग्रो टुरिझम" 
+                class="h-full w-auto object-contain block">
             </div>
           </a>
 
           <!-- Desktop Navigation Menu (Active on xl >= 1200/1280px) -->
-          <nav class="hidden xl:flex items-center justify-center gap-1.5 2xl:gap-2.5 flex-1 min-w-0 mx-2">
+          <nav class="hidden xl:flex items-center gap-1 xl:gap-1.5 2xl:gap-2.5 shrink-0">
             <a 
               routerLink="/" 
               routerLinkActive="text-amber-300 font-bold border-b-2 border-amber-400" 
@@ -125,6 +126,12 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
               {{ langService.t('nav.gallery') }}
             </a>
             <a 
+              routerLink="/village-flavors" 
+              routerLinkActive="text-amber-300 font-bold border-b-2 border-amber-400" 
+              class="px-2.5 2xl:px-3 py-1.5 rounded-lg text-[13px] 2xl:text-[14px] font-medium text-emerald-100 hover:text-amber-300 hover:bg-white/5 transition-all duration-200 whitespace-nowrap shrink-0">
+              {{ langService.t('nav.villageFlavors') }}
+            </a>
+            <a 
               routerLink="/blogs" 
               routerLinkActive="text-amber-300 font-bold border-b-2 border-amber-400" 
               class="px-2.5 2xl:px-3 py-1.5 rounded-lg text-[13px] 2xl:text-[14px] font-medium text-emerald-100 hover:text-amber-300 hover:bg-white/5 transition-all duration-200 whitespace-nowrap shrink-0">
@@ -139,7 +146,7 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
           </nav>
 
           <!-- Language Switcher & Book Now CTA Button on Far Right (Desktop xl+) -->
-          <div class="hidden xl:flex items-center gap-2.5 shrink-0">
+          <div class="hidden xl:flex items-center gap-2.5 shrink-0 pl-1">
             <app-language-switcher></app-language-switcher>
             
             <a routerLink="/contact" class="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-stone-950 font-black text-xs 2xl:text-xs rounded-full shadow-md shadow-amber-500/20 transition-all duration-300 transform hover:scale-105 whitespace-nowrap shrink-0 border border-amber-300/40">
@@ -149,7 +156,7 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
           </div>
 
           <!-- Tablet & Mobile Action Bar (Language Switcher, Book Now CTA & Hamburger Button) -->
-          <div class="flex xl:hidden items-center gap-2 shrink-0">
+          <div class="flex xl:hidden items-center gap-1.5 sm:gap-2 shrink-0">
             <app-language-switcher></app-language-switcher>
 
             <a routerLink="/contact" class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 bg-gradient-to-r from-amber-400 to-amber-500 text-stone-950 font-black text-xs rounded-full shadow-md whitespace-nowrap">
@@ -194,6 +201,9 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
         <a (click)="closeMobileMenu()" routerLink="/gallery" routerLinkActive="text-amber-300 font-bold bg-white/10" class="block px-3 py-2.5 text-base font-medium text-emerald-100 hover:text-white rounded-xl border-b border-emerald-900/60">
           {{ langService.t('nav.gallery') }}
         </a>
+        <a (click)="closeMobileMenu()" routerLink="/village-flavors" routerLinkActive="text-amber-300 font-bold bg-white/10" class="block px-3 py-2.5 text-base font-medium text-emerald-100 hover:text-white rounded-xl border-b border-emerald-900/60">
+          {{ langService.t('nav.villageFlavors') }}
+        </a>
         <a (click)="closeMobileMenu()" routerLink="/blogs" routerLinkActive="text-amber-300 font-bold bg-white/10" class="block px-3 py-2.5 text-base font-medium text-emerald-100 hover:text-white rounded-xl border-b border-emerald-900/60">
           {{ langService.t('nav.blogs') }}
         </a>
@@ -206,9 +216,17 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
           <a (click)="closeMobileMenu()" routerLink="/contact" class="w-full py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 text-stone-950 font-black text-sm rounded-2xl flex items-center justify-center gap-2 shadow-lg">
             <span>{{ langService.t('nav.bookNow') }}</span>
           </a>
-          <a [href]="getWhatsAppUrl()" target="_blank" class="w-full py-3.5 bg-[#075E54] hover:bg-[#128C7E] text-white font-bold text-sm rounded-2xl flex items-center justify-center gap-2.5 border border-emerald-600/40 shadow-lg shadow-emerald-950/30 transition">
+          <a [href]="'tel:' + (settings()?.site?.phone || '+919158141414')" class="w-full py-3.5 bg-[#082813] hover:bg-[#0c381c] text-white font-bold text-sm rounded-2xl flex items-center justify-center gap-2.5 border border-emerald-700/60 shadow-lg shadow-emerald-950/20 active:scale-98 transition">
+            <span class="text-base">📞</span>
+            <span>{{ langService.t('nav.callResort') }}</span>
+          </a>
+          <a [href]="getWhatsAppUrl()" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 bg-[#075E54] hover:bg-[#128C7E] text-white font-bold text-sm rounded-2xl flex items-center justify-center gap-2.5 border border-emerald-600/40 shadow-lg shadow-emerald-950/30 transition">
             <span class="w-5 h-5 text-[#25D366] flex items-center justify-center"><svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 00-3.48-8.413z"/></svg></span>
             <span>WhatsApp Concierge</span>
+          </a>
+          <a [href]="settings()?.social?.instagram || 'https://www.instagram.com/visawaagrotourism'" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 bg-gradient-to-r from-[#F58529]/90 via-[#DD2A7B]/90 to-[#8134AF]/90 hover:opacity-95 text-white font-bold text-sm rounded-2xl flex items-center justify-center gap-2.5 border border-white/20 shadow-lg shadow-pink-950/30 transition">
+            <span class="w-5 h-5 flex items-center justify-center"><svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+            <span>{{ langService.isMarathi() ? 'इन्स्टाग्रामवर फॉलो करा' : 'Follow on Instagram' }}</span>
           </a>
         </div>
       </div>
@@ -216,9 +234,9 @@ import { LanguageSwitcherComponent } from '../language-switcher/language-switche
 
     <!-- Layout Spacer -->
     <div 
-      [class.h-16]="isScrolled()"
-      [class.h-20]="!isScrolled()"
-      [class.md:h-24]="!isScrolled()"
+      [class.h-14]="isScrolled()"
+      [class.h-18]="!isScrolled()"
+      [class.md:h-22]="!isScrolled()"
       class="transition-all duration-300">
     </div>
   `
@@ -252,9 +270,9 @@ export class HeaderComponent implements OnInit {
   }
 
   getWhatsAppUrl(): string {
-    const rawPhone = this.settings()?.site?.phone || '+91 98765 43210';
+    const rawPhone = this.settings()?.site?.phone || '+91 91581 41414';
     const digits = rawPhone ? rawPhone.replace(/\D/g, '') : '';
-    const phone = digits.length === 10 ? `91${digits}` : (digits || '919876543210');
+    const phone = digits.length === 10 ? `91${digits}` : (digits || '919158141414');
     const msg = this.langService.isMarathi()
       ? 'नमस्कार, मला विसावा ॲग्रो टुरिझम – बाबांचा मळा येथे बुकिंग व चौकशी करायची आहे.'
       : 'Hello, I would like to enquire about Visawa Agro Tourism – Babacha Mala bookings.';

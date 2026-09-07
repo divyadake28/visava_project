@@ -14,30 +14,30 @@ import { EmptyStateComponent } from '../../shared/components/empty-state.compone
   imports: [CommonModule, RouterModule, LoadingSpinnerComponent, EmptyStateComponent],
   template: `
     <!-- Hero Banner -->
-    <div class="relative py-16 lg:py-24 bg-emerald-950 text-white overflow-hidden">
+    <div class="page-hero relative bg-[#0D3B1C] text-white overflow-hidden flex items-center justify-center">
       <div class="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&auto=format&fit=crop&q=85" 
+          [src]="settings()?.homepage?.hero?.image || '/images/visawa_grand_entrance_hero.jpg'" 
           alt="Visawa Agro Experiences" 
-          class="w-full h-full object-cover opacity-25 scale-105">
-        <div class="absolute inset-0 bg-gradient-to-r from-emerald-950 via-emerald-950/90 to-stone-900/80"></div>
+          class="page-hero-img w-full h-full object-cover">
+        <div class="absolute inset-0 page-hero-overlay"></div>
       </div>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/20 border border-emerald-400/30 rounded-full text-xs font-bold text-emerald-300 backdrop-blur-md">
+      <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4 w-full">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0D3B1C]/85 border border-amber-400/40 rounded-full text-xs font-bold text-amber-300 backdrop-blur-md shadow-md">
           <span>🌿</span>
           <span>{{ langService.t('exp.badge') }}</span>
         </div>
-        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-md">
+        <h1 class="page-hero-title font-black tracking-tight text-white hero-title-shadow">
           {{ langService.t('exp.title') }}
         </h1>
-        <p class="text-xs sm:text-sm lg:text-base text-emerald-100 max-w-2xl mx-auto font-medium">
+        <p class="text-xs sm:text-sm lg:text-base text-white/95 max-w-2xl mx-auto font-medium hero-desc-shadow">
           {{ langService.t('exp.subtitle') }}
         </p>
       </div>
     </div>
 
     <!-- Experiences Grid Section -->
-    <section class="py-16 sm:py-20 bg-stone-50">
+    <section class="pt-7 sm:pt-8 pb-3 sm:pb-3.5 bg-stone-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         @if (loading()) {
           <app-loading-spinner [message]="langService.t('exp.loading')"></app-loading-spinner>
@@ -116,6 +116,7 @@ export class ExperiencesComponent implements OnInit {
   langService = inject(LanguageService);
 
   activities = signal<Activity[]>([]);
+  settings = signal<any | null>(null);
   loading = signal<boolean>(true);
   error = signal<string | null>(null);
 
@@ -129,6 +130,13 @@ export class ExperiencesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadActivities();
+    this.settingService.getSettings().subscribe({
+      next: (res) => {
+        if (res.success && res.data) {
+          this.settings.set(res.data);
+        }
+      }
+    });
   }
 
   loadActivities(lang?: string): void {
@@ -160,7 +168,7 @@ export class ExperiencesComponent implements OnInit {
       return 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80';
     }
     if (title.includes('vineyard') || title.includes('द्राक्ष') || title.includes('grape')) {
-      return 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?w=800&auto=format&fit=crop&q=80';
+      return '/images/visawa_vineyard_patio.jpg';
     }
     if (title.includes('misal') || title.includes('मिसळ') || title.includes('जेवण') || title.includes('dining') || title.includes('food')) {
       return 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&auto=format&fit=crop&q=80';
@@ -181,13 +189,13 @@ export class ExperiencesComponent implements OnInit {
       return 'https://images.unsplash.com/photo-1592417817098-8f3d69109853?w=800&auto=format&fit=crop&q=80';
     }
     if (title.includes('farm') || title.includes('शिवार') || title.includes('शेती')) {
-      return 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&auto=format&fit=crop&q=80';
+      return '/images/visawa_farm_orchard.jpg';
     }
-    return 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&auto=format&fit=crop&q=80';
+    return '/images/visawa_farm_orchard.jpg';
   }
 
   enquireOnWhatsApp(act: Activity): void {
-    const phone = '919876543210';
+    const phone = '919158141414';
     const isMr = this.langService.isMarathi();
     const msg = isMr
       ? `नमस्कार! मी विसावा ॲग्रो टुरिझम – बाबांचा मळा येथील "${act.title}" या उपक्रमाबद्दल अधिक माहिती आणि बुकिंगसाठी चौकशी करू इच्छितो.`

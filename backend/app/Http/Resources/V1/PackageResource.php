@@ -22,8 +22,6 @@ class PackageResource extends JsonResource
             'duration' => $this->getLocalized('duration', $lang),
             'duration_mr' => $this->duration_mr,
             'duration_en' => $this->duration_en,
-            'price' => (float) $this->price,
-            'discounted_price' => $this->discounted_price ? (float) $this->discounted_price : null,
             'short_description' => $this->getLocalized('short_description', $lang),
             'short_description_mr' => $this->short_description_mr,
             'short_description_en' => $this->short_description_en,

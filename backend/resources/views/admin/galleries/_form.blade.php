@@ -26,13 +26,33 @@
         <!-- Category Marathi -->
         <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">श्रेणी / प्रकार (मराठी)</label>
-            <input type="text" name="category_mr" value="{{ old('category_mr', $gallery->category_mr ?? '') }}" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:border-emerald-500 outline-none" placeholder="उदा. शेती व निसर्ग, उपक्रम, खाद्यसंस्कृती, सोहळे">
+            <input type="text" name="category_mr" list="category_mr_list" value="{{ old('category_mr', $gallery->category_mr ?? '') }}" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:border-emerald-500 outline-none" placeholder="उदा. शेती व निसर्ग, उपक्रम, खाद्यसंस्कृती, सोहळे">
+            <datalist id="category_mr_list">
+                <option value="शेती व निसर्ग">
+                <option value="उपक्रम">
+                <option value="खाद्यसंस्कृती">
+                <option value="सोहळे व कार्यक्रम">
+                <option value="पाहुण्यांचे क्षण">
+                <option value="फोटो पॉईंट्स">
+                <option value="ऐतिहासिक वारसा">
+                <option value="धार्मिक स्थळ">
+            </datalist>
         </div>
 
         <!-- Category English -->
         <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Category (English)</label>
-            <input type="text" name="category_en" value="{{ old('category_en', $gallery->category_en ?? '') }}" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:border-emerald-500 outline-none" placeholder="e.g. Farm & Nature, Activities, Food, Events">
+            <input type="text" name="category_en" list="category_en_list" value="{{ old('category_en', $gallery->category_en ?? '') }}" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:border-emerald-500 outline-none" placeholder="e.g. Farm & Nature, Activities, Food & Dining, Events">
+            <datalist id="category_en_list">
+                <option value="Farm & Nature">
+                <option value="Activities">
+                <option value="Food & Dining">
+                <option value="Events">
+                <option value="Guest Moments">
+                <option value="Selfie Points">
+                <option value="Heritage & Culture">
+                <option value="Spiritual Attraction">
+            </datalist>
         </div>
     </div>
 
@@ -50,12 +70,25 @@
         @endif
     </div>
 
-    <!-- Status -->
-    <div>
-        <label class="block text-xs font-bold text-slate-700 mb-1">Status (स्थिती) <span class="text-rose-500">*</span></label>
-        <select name="status" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:border-emerald-500 outline-none bg-white">
-            <option value="active" {{ old('status', $gallery->status ?? 'active') === 'active' ? 'selected' : '' }}>Active (सक्रिय / वेबसाइटवर प्रदर्शित करा)</option>
-            <option value="inactive" {{ old('status', $gallery->status ?? '') === 'inactive' ? 'selected' : '' }}>Inactive (अक्रिय / लपवा)</option>
-        </select>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- Display Order (Sort Order) -->
+        <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">
+                Display Order / अनुक्रम (Sort Order)
+            </label>
+            <input type="number" name="sort_order" value="{{ old('sort_order', $gallery->sort_order ?? 0) }}" min="0" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:border-emerald-500 outline-none" placeholder="0">
+            @error('sort_order') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
+            <p class="text-[11px] text-slate-400 mt-1">Lower numbers appear first on the website (e.g. 1, 2, 3...)</p>
+        </div>
+
+        <!-- Status -->
+        <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Status (स्थिती) <span class="text-rose-500">*</span></label>
+            <select name="status" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:border-emerald-500 outline-none bg-white">
+                <option value="active" {{ old('status', $gallery->status ?? 'active') === 'active' ? 'selected' : '' }}>Active (सक्रिय / वेबसाइटवर प्रदर्शित करा)</option>
+                <option value="inactive" {{ old('status', $gallery->status ?? '') === 'inactive' ? 'selected' : '' }}>Inactive (अक्रिय / लपवा)</option>
+            </select>
+            @error('status') <p class="text-rose-600 text-xs mt-1">{{ $message }}</p> @enderror
+        </div>
     </div>
 </div>

@@ -18,7 +18,7 @@ export const apiCacheInterceptor: HttpInterceptorFn = (req, next): Observable<Ht
   const cacheService = inject(ApiCacheService);
   const cacheKey = `${req.method}::${req.urlWithParams}`;
 
-  const cached = cacheService.get(cacheKey);
+  const cached = cacheService.get(cacheKey, true);
 
   // Stale-While-Revalidate Strategy:
   if (cached) {

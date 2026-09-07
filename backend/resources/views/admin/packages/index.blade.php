@@ -8,7 +8,7 @@
     <div class="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
         <div>
             <h2 class="text-base font-bold text-slate-900 font-heading">Stay & Tour Packages</h2>
-            <p class="text-xs text-slate-500">Configure prices, inclusions, discounts and featured offerings</p>
+            <p class="text-xs text-slate-500">Configure duration, inclusions, activities and featured offerings</p>
         </div>
         <a href="{{ route('admin.packages.create') }}" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-xl shadow-sm transition">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
@@ -32,8 +32,6 @@
                     <tr>
                         <th class="px-6 py-3.5">Package</th>
                         <th class="px-6 py-3.5">Duration</th>
-                        <th class="px-6 py-3.5">Price</th>
-                        <th class="px-6 py-3.5">Discounted</th>
                         <th class="px-6 py-3.5">Featured</th>
                         <th class="px-6 py-3.5">Status</th>
                         <th class="px-6 py-3.5 text-right">Actions</th>
@@ -44,8 +42,6 @@
                         <tr class="hover:bg-slate-50/70 transition-colors">
                             <td class="px-6 py-4 font-semibold text-slate-900">{{ $pkg->name }}</td>
                             <td class="px-6 py-4 text-slate-600">{{ $pkg->duration ?? 'Custom' }}</td>
-                            <td class="px-6 py-4 font-bold text-slate-900">₹{{ number_format($pkg->price, 2) }}</td>
-                            <td class="px-6 py-4 text-emerald-600 font-semibold">{{ $pkg->discounted_price ? '₹'.number_format($pkg->discounted_price, 2) : '-' }}</td>
                             <td class="px-6 py-4">
                                 <span class="badge {{ $pkg->is_featured ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-600' }}">
                                     {{ $pkg->is_featured ? 'Featured' : 'Standard' }}

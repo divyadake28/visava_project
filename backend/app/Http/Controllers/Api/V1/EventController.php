@@ -13,17 +13,21 @@ class EventController extends Controller
     public function index(Request $request): JsonResponse
     {
         $lang = $request->query('lang', 'mr');
-        $events = Event::where(function ($q) {
-            $q->where('status', 'active')->orWhere('is_active', true);
-        })
-        ->orderBy('id', 'asc')
-        ->get();
+        $data = \Illuminate\Support\Facades\Cache::remember("api_events_{$lang}", 3600, function () {
+            $events = Event::where(function ($q) {
+                $q->where('status', 'active')->orWhere('is_active', true);
+            })
+            ->orderBy('id', 'asc')
+            ->get();
+
+            return EventResource::collection($events)->resolve();
+        });
 
         return response()->json([
             'success' => true,
             'message' => $lang === 'mr' ? 'कार्यक्रम व सोहळे यशस्वीरित्या लोड केले' : 'Events fetched successfully',
             'language' => $lang,
-            'data' => EventResource::collection($events),
+            'data' => $data,
         ]);
     }
 

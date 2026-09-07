@@ -22,6 +22,7 @@ class GalleryResource extends JsonResource
             'category_mr' => $this->category_mr,
             'category_en' => $this->category_en,
             'image' => $fileService->url($this->image ?? $this->image_path),
+            'sort_order' => (int) ($this->sort_order ?? 0),
             'status' => $this->status ?? ($this->is_active ? 'active' : 'inactive'),
             'created_at' => $this->created_at?->toIso8601String(),
         ];

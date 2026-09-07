@@ -30,7 +30,6 @@ class EventResource extends JsonResource
             'description_mr' => $this->description_mr,
             'description_en' => $this->description_en,
             'image' => $fileService->url($this->image ?? $this->banner_image),
-            'price' => $this->price,
             'status' => $this->status ?? ($this->is_active ? 'active' : 'inactive'),
             'created_at' => $this->created_at?->toIso8601String(),
         ];

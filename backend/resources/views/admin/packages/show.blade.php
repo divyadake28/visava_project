@@ -8,7 +8,7 @@
     <div class="flex items-center justify-between border-b border-slate-100 pb-4">
         <div>
             <h2 class="text-lg font-bold text-slate-900">{{ $package->title_mr ?? $package->title_en ?? $package->name }}</h2>
-            <p class="text-xs font-bold text-purple-600 mt-0.5">Price: ₹{{ number_format($package->price, 2) }} @if($package->discounted_price) | Discounted: ₹{{ number_format($package->discounted_price, 2) }} @endif | Duration: {{ $package->duration_mr ?? $package->duration_en ?? $package->duration }}</p>
+            <p class="text-xs font-bold text-emerald-700 mt-0.5">Duration: {{ $package->duration_mr ?? $package->duration_en ?? $package->duration ?? 'Custom' }}</p>
         </div>
         <div class="flex items-center gap-2">
             <a href="{{ route('admin.packages.edit', $package) }}" class="px-3 py-1.5 bg-purple-600 text-white text-xs font-semibold rounded-lg hover:bg-purple-700">Edit</a>

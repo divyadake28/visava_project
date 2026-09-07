@@ -462,7 +462,7 @@ curl -X GET "http://127.0.0.1:8000/api/v1/activities?lang=mr" \
   "data": {
     "site": {
       "name": "विसावा अम्युझमेंट पार्क आणि रिसॉर्ट",
-      "email": "info@visava.com",
+      "email": "Visawaagrotourism@gmail.com",
       "phone": "+91 9876543210",
       "address": "विसावा रिसॉर्ट, निसर्गरम्य परिसर, महाराष्ट्र, भारत",
       "logo": "http://127.0.0.1:8000/storage/uploads/settings/logo.png",

@@ -1,23 +1,23 @@
-<div class="py-4 sm:py-6 lg:py-8 bg-stone-50 min-h-screen">
+<div class="pt-4 sm:pt-6 lg:pt-8 pb-3 sm:pb-3.5 bg-stone-50">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 animate-fade-up">
     
     <!-- Top Breadcrumb & Back Navigation -->
-    <div class="flex items-center justify-between gap-4 border-b border-stone-200/80 pb-4">
-      <nav class="flex items-center gap-2 text-xs font-semibold text-stone-500 overflow-hidden text-ellipsis whitespace-nowrap">
-        <a routerLink="/" class="hover:text-emerald-700 transition">
+    <div class="flex items-center justify-between gap-2 sm:gap-4 border-b border-stone-200/80 pb-4">
+      <nav class="flex items-center gap-1.5 sm:gap-2 text-xs font-semibold text-stone-500 min-w-0 flex-1 overflow-hidden whitespace-nowrap">
+        <a routerLink="/" class="hover:text-emerald-700 transition shrink-0">
           {{ langService.isMarathi() ? 'मुख्यपृष्ठ' : 'Home' }}
         </a>
         <span>/</span>
-        <a routerLink="/packages" class="hover:text-emerald-700 transition">
+        <a routerLink="/packages" class="hover:text-emerald-700 transition shrink-0">
           {{ langService.isMarathi() ? 'पॅकेजेस' : 'Packages' }}
         </a>
         <span>/</span>
-        <span class="text-stone-900 font-bold truncate max-w-[200px] sm:max-w-xs">
+        <span class="text-stone-900 font-bold truncate max-w-[90px] xs:max-w-[150px] sm:max-w-xs">
           {{ pkg()?.title || (langService.isMarathi() ? 'पॅकेज तपशील' : 'Package Details') }}
         </span>
       </nav>
 
-      <a routerLink="/packages" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-xs font-bold text-stone-700 hover:text-emerald-800 shadow-sm transition group shrink-0">
+      <a routerLink="/packages" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-xs font-bold text-stone-700 hover:text-emerald-800 shadow-sm transition group shrink-0">
         <svg class="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
         <span>{{ langService.t('packageDetails.back') }}</span>
       </a>
@@ -101,32 +101,6 @@
             </div>
           }
 
-          <!-- Pricing Card -->
-          <div class="p-4 sm:p-5 bg-gradient-to-br from-emerald-900 via-emerald-950 to-stone-950 rounded-2xl text-white flex items-center justify-between gap-4 shadow-lg border border-emerald-800">
-            <div>
-              <span class="text-[11px] text-emerald-200/90 font-semibold block uppercase tracking-wider">
-                {{ langService.t('packages.priceFrom') }}
-              </span>
-              <div class="flex items-baseline gap-2.5 mt-0.5">
-                @if (pkg()!.discounted_price) {
-                  <span class="text-xs sm:text-sm text-emerald-300/60 line-through">₹{{ pkg()!.price }}</span>
-                  <span class="text-2xl sm:text-3xl font-black text-amber-400">₹{{ pkg()!.discounted_price }}</span>
-                } @else {
-                  <span class="text-2xl sm:text-3xl font-black text-amber-400">₹{{ pkg()!.price }}</span>
-                }
-                <span class="text-[11px] text-emerald-200/80 font-medium">
-                  {{ langService.isMarathi() ? '/ व्यक्ती' : '/ person' }}
-                </span>
-              </div>
-            </div>
-
-            @if (pkg()!.discounted_price) {
-              <div class="px-3 py-1 bg-amber-400 text-stone-950 text-xs font-black rounded-xl shadow-md">
-                ★ {{ langService.isMarathi() ? 'सवलत दर' : 'Special Offer' }}
-              </div>
-            }
-          </div>
-
           <!-- Action Buttons (High-Conversion WhatsApp + Call) -->
           <div class="space-y-3 pt-2">
             <button 
@@ -137,19 +111,19 @@
               <span>{{ langService.t('packageDetails.bookNow') }}</span>
             </button>
 
-            <div class="grid grid-cols-2 gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <a 
-                [href]="'tel:' + (settings()?.site?.phone || '+919876543210')"
-                class="py-3 px-4 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs rounded-xl transition flex items-center justify-center gap-2 border border-stone-200">
-                <span>📞</span>
-                <span>{{ langService.t('packageDetails.callNow') }}</span>
+                [href]="'tel:' + (settings()?.site?.phone || '+919158141414')"
+                class="min-h-[48px] py-3.5 px-5 sm:px-6 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs sm:text-sm rounded-2xl transition-all duration-200 flex items-center justify-center gap-2.5 border border-stone-200 shadow-sm active:scale-98 text-center flex-1">
+                <span class="text-base shrink-0">📞</span>
+                <span class="whitespace-nowrap">{{ langService.isMarathi() ? 'थेट कॉल करा' : 'Call Resort Directly' }}</span>
               </a>
 
               <a 
                 routerLink="/packages"
-                class="py-3 px-4 bg-white hover:bg-stone-50 text-stone-700 font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 border border-stone-200">
-                <span>📋</span>
-                <span>{{ langService.isMarathi() ? 'सर्व पॅकेजेस' : 'All Packages' }}</span>
+                class="min-h-[48px] py-3.5 px-5 sm:px-6 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold text-xs sm:text-sm rounded-2xl transition-all duration-200 flex items-center justify-center gap-2.5 border border-stone-200 shadow-sm active:scale-98 text-center flex-1">
+                <span class="text-base shrink-0">📋</span>
+                <span class="whitespace-nowrap">{{ langService.isMarathi() ? 'सर्व पॅकेजेस' : 'All Packages' }}</span>
               </a>
             </div>
           </div>
@@ -208,6 +182,29 @@
           </div>
 
         </div>
+
+        <!-- Authentic Village Flavors CTA Button (Immediately Below Inclusions & Exclusions) -->
+        <div class="pt-6 border-t border-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 sm:p-6 bg-gradient-to-r from-[#0B4D1E] via-[#0D3B1C] to-emerald-900 rounded-2xl sm:rounded-3xl border border-amber-400/30 text-white shadow-lg">
+          <div class="space-y-1 text-center sm:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-400/20 text-amber-300 rounded-full text-xs font-bold border border-amber-400/30">
+              <span>🍲</span>
+              <span>{{ langService.isMarathi() ? 'गावरान खाद्यसंस्कृती' : 'Authentic Village Cuisine' }}</span>
+            </div>
+            <h4 class="text-base sm:text-lg font-black text-white">
+              {{ langService.isMarathi() ? 'चुलीवरचे अस्सल जेवण व खाद्य मेनू पहा' : 'Explore Wood-Fired Village Dining Menu' }}
+            </h4>
+            <p class="text-xs text-emerald-100/90 max-w-xl">
+              {{ langService.isMarathi() ? 'या पॅकेजसोबत गरमागरम चुलीवरची भाकरी, पिठलं, मिसळ आणि अस्सल चव.' : 'Farm-fresh Maharashtrian dishes prepared on traditional wood-fired stoves.' }}
+            </p>
+          </div>
+          <a 
+            routerLink="/village-flavors"
+            class="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3.5 bg-[#0B4D1E] hover:bg-emerald-800 text-white hover:text-amber-300 text-xs sm:text-sm font-black rounded-full border border-amber-400/50 shadow-xl shadow-emerald-950/30 transform hover:scale-105 transition-all duration-300 cursor-pointer shrink-0 group">
+            <span>🍽️</span>
+            <span>{{ langService.isMarathi() ? 'गावरान खाद्यसंस्कृती' : 'Authentic Village Flavors' }}</span>
+            <span class="text-amber-300 group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
       </div>
 
       <!-- 3. High-End Booking & Inquiry Card -->
@@ -219,7 +216,7 @@
               {{ langService.isMarathi() ? 'या पॅकेजसाठी त्वरित बुकिंग व चौकशी करा' : 'Enquire & Reserve This Package on WhatsApp' }}
             </h3>
             <p class="text-xs sm:text-sm text-emerald-200 max-w-2xl leading-relaxed">
-              {{ langService.isMarathi() ? 'थेट व्हॉट्सॲपवर संपर्क साधून तारखांची उपलब्धता आणि विशेष कौटुंबिक किंवा ग्रुप डिस्काउंटची माहिती मिळवा.' : 'Connect with our team for immediate booking confirmation, special group discounts, and custom food requirements.' }}
+              {{ langService.isMarathi() ? 'थेट व्हॉट्सॲपवर संपर्क साधून तारखांची उपलब्धता आणि विशेष ग्रुप व्यवस्थांची माहिती मिळवा.' : 'Connect with our team for immediate booking confirmation, special group arrangements, and custom food requirements.' }}
             </p>
           </div>
 
@@ -246,7 +243,7 @@
               </h3>
             </div>
             <a routerLink="/packages" class="text-xs sm:text-sm font-bold text-emerald-800 hover:text-emerald-950 transition flex items-center gap-1">
-              <span>{{ langService.isMarathi() ? 'सर्व ६ पॅकेजेस' : 'View All Packages' }}</span>
+              <span>{{ langService.isMarathi() ? 'सर्व पॅकेजेस' : 'View All Packages' }}</span>
               <span>→</span>
             </a>
           </div>
@@ -275,12 +272,9 @@
                     <p class="text-xs text-stone-500 mt-1 line-clamp-2">{{ other.short_description }}</p>
                   </div>
                   <div class="pt-3 border-t border-stone-100 flex items-center justify-between">
-                    <div>
-                      <span class="text-[10px] text-stone-400 block">{{ langService.t('packages.priceFrom') }}</span>
-                      <span class="text-base font-black text-emerald-800">
-                        ₹{{ other.discounted_price || other.price }}
-                      </span>
-                    </div>
+                    <span class="text-xs font-bold text-emerald-800">
+                      {{ other.duration ? '⏳ ' + other.duration : (langService.isMarathi() ? 'सहल पॅकेज' : 'Tour Package') }}
+                    </span>
                     <span class="text-xs font-bold text-emerald-700 group-hover:translate-x-1 transition-transform">
                       {{ langService.isMarathi() ? 'पहा →' : 'View →' }}
                     </span>

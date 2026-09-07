@@ -37,5 +37,31 @@
             <div class="text-xs text-slate-700 whitespace-pre-line leading-relaxed">{{ $blog->description_en ?? '(No English text)' }}</div>
         </div>
     </div>
+
+    @if ($blog->blog_video || $blog->youtube_url || $blog->instagram_url)
+        <div class="p-4 bg-blue-50/50 rounded-xl border border-blue-100 space-y-3">
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Media & Integrations</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                @if ($blog->blog_video)
+                    <div class="p-3 bg-white rounded-lg border border-slate-200">
+                        <span class="font-bold text-emerald-700 block mb-1">🎥 Uploaded Video</span>
+                        <a href="{{ app(\App\Services\FileUploadService::class)->url($blog->blog_video) }}" target="_blank" class="text-blue-600 underline">View Video File &rarr;</a>
+                    </div>
+                @endif
+                @if ($blog->youtube_url)
+                    <div class="p-3 bg-white rounded-lg border border-slate-200">
+                        <span class="font-bold text-red-600 block mb-1">▶ YouTube Link</span>
+                        <a href="{{ $blog->youtube_url }}" target="_blank" class="text-blue-600 underline truncate block">{{ $blog->youtube_url }}</a>
+                    </div>
+                @endif
+                @if ($blog->instagram_url)
+                    <div class="p-3 bg-white rounded-lg border border-slate-200">
+                        <span class="font-bold text-pink-600 block mb-1">📸 Instagram Link</span>
+                        <a href="{{ $blog->instagram_url }}" target="_blank" class="text-blue-600 underline truncate block">{{ $blog->instagram_url }}</a>
+                    </div>
+                @endif
+            </div>
+        </div>
+    @endif
 </div>
 @endsection

@@ -20,7 +20,7 @@ class GalleryController extends Controller
 
     public function index(): View
     {
-        $galleries = Gallery::latest()->paginate(12);
+        $galleries = Gallery::orderBy('sort_order', 'asc')->latest()->paginate(12);
         return view('admin.galleries.index', compact('galleries'));
     }
 
@@ -41,6 +41,7 @@ class GalleryController extends Controller
 
         $data['title'] = $data['title_en'] ?? $data['title_mr'];
         $data['category'] = $data['category_en'] ?? $data['category_mr'];
+        $data['sort_order'] = (int) ($request->input('sort_order', 0));
         $data['is_active'] = ($data['status'] === 'active');
 
         Gallery::create($data);
@@ -69,6 +70,7 @@ class GalleryController extends Controller
 
         $data['title'] = $data['title_en'] ?? $data['title_mr'];
         $data['category'] = $data['category_en'] ?? $data['category_mr'];
+        $data['sort_order'] = (int) ($request->input('sort_order', 0));
         $data['is_active'] = ($data['status'] === 'active');
 
         $gallery->update($data);

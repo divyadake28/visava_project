@@ -36,6 +36,10 @@ class Event extends Model
         'is_active',
     ];
 
+    protected $attributes = [
+        'price' => null,
+    ];
+
     protected function casts(): array
     {
         return [
@@ -65,6 +69,16 @@ class Event extends Model
             if (auth()->check()) {
                 $model->updated_by = auth()->id();
             }
+        });
+
+        static::saved(function () {
+            \Illuminate\Support\Facades\Cache::forget('api_events_mr');
+            \Illuminate\Support\Facades\Cache::forget('api_events_en');
+        });
+
+        static::deleted(function () {
+            \Illuminate\Support\Facades\Cache::forget('api_events_mr');
+            \Illuminate\Support\Facades\Cache::forget('api_events_en');
         });
     }
 

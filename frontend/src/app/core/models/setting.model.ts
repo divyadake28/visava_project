@@ -3,6 +3,7 @@ export interface SiteSettings {
     name?: string;
     email?: string;
     phone?: string;
+    whatsapp_owner_number?: string;
     address?: string;
     logo?: string | null;
     favicon?: string | null;

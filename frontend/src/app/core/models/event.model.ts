@@ -15,7 +15,6 @@ export interface EventItem {
   description_mr?: string;
   description_en?: string;
   image?: string | null;
-  price?: number | null;
   status: string;
   created_at?: string;
 }

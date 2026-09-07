@@ -86,7 +86,7 @@ export class PackagesComponent implements OnInit {
       event.stopPropagation();
     }
 
-    const rawPhone = this.settings()?.site?.phone || '+91 98765 43210';
+    const rawPhone = this.settings()?.site?.phone || '+91 91581 41414';
     const digits = rawPhone ? rawPhone.replace(/\D/g, '') : '';
     const phone = digits.length === 10 ? `91${digits}` : digits;
 
@@ -97,13 +97,12 @@ export class PackagesComponent implements OnInit {
 
     const title = pkg.title || 'Tour Package';
     const duration = pkg.duration || (this.langService.isMarathi() ? 'संपूर्ण दिवस' : 'Full Day');
-    const price = pkg.discounted_price ? `₹${pkg.discounted_price}` : `₹${pkg.price}`;
 
     let message = '';
     if (this.langService.isMarathi()) {
-      message = `नमस्कार, मला "${title}" या पॅकेजबद्दल माहिती हवी आहे. कालावधी: ${duration}. किंमत: ${price}. कृपया उपलब्धता आणि बुकिंगची माहिती पाठवा.`;
+      message = `नमस्कार, मला "${title}" या पॅकेजबद्दल माहिती हवी आहे. कालावधी: ${duration}. कृपया उपलब्धता आणि बुकिंगची माहिती पाठवा.`;
     } else {
-      message = `Hello, I would like more information about the "${title}" package. Duration: ${duration}. Price: ${price}. Please share availability and booking details.`;
+      message = `Hello, I would like more information about the "${title}" package. Duration: ${duration}. Please share availability and booking details.`;
     }
 
     const encodedMessage = encodeURIComponent(message);

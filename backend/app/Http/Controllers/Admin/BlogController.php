@@ -38,6 +38,10 @@ class BlogController extends Controller
             $data['featured_image'] = $this->fileService->upload($request->file('featured_image'), 'blogs');
         }
 
+        if ($request->hasFile('blog_video')) {
+            $data['blog_video'] = $this->fileService->upload($request->file('blog_video'), 'blogs/videos');
+        }
+
         $data['title'] = $data['title_en'] ?? $data['title_mr'] ?? null;
         $data['content'] = $data['description_en'] ?? $data['description_mr'] ?? null;
         $data['excerpt'] = $data['short_description_en'] ?? $data['short_description_mr'] ?? null;
@@ -66,6 +70,10 @@ class BlogController extends Controller
             $data['featured_image'] = $this->fileService->upload($request->file('featured_image'), 'blogs', $blog->featured_image);
         }
 
+        if ($request->hasFile('blog_video')) {
+            $data['blog_video'] = $this->fileService->upload($request->file('blog_video'), 'blogs/videos', $blog->blog_video);
+        }
+
         $data['title'] = $data['title_en'] ?? $data['title_mr'] ?? $blog->title;
         $data['content'] = $data['description_en'] ?? $data['description_mr'] ?? $blog->content;
         $data['excerpt'] = $data['short_description_en'] ?? $data['short_description_mr'] ?? $blog->excerpt;
@@ -80,6 +88,10 @@ class BlogController extends Controller
     {
         if ($blog->featured_image) {
             $this->fileService->delete($blog->featured_image);
+        }
+
+        if ($blog->blog_video) {
+            $this->fileService->delete($blog->blog_video);
         }
 
         $blog->delete();

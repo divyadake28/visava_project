@@ -1,28 +1,28 @@
 <!-- Hero Banner -->
-<div class="relative py-20 lg:py-28 bg-emerald-950 text-white overflow-hidden">
+<div class="page-hero relative bg-[#0D3B1C] text-white overflow-hidden flex items-center justify-center">
   <div class="absolute inset-0 z-0">
     <img 
-      src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1920&auto=format&fit=crop&q=85" 
+      [src]="settings()?.homepage?.hero?.image || '/images/visawa_grand_entrance_hero.jpg'" 
       alt="Visawa Agro Events" 
-      class="w-full h-full object-cover opacity-25 scale-105">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950 via-emerald-950/90 to-stone-900/80"></div>
+      class="page-hero-img w-full h-full object-cover">
+    <div class="absolute inset-0 page-hero-overlay"></div>
   </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/20 border border-emerald-400/30 rounded-full text-xs font-bold text-emerald-300 backdrop-blur-md">
+  <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4 w-full">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0D3B1C]/85 border border-amber-400/40 rounded-full text-xs font-bold text-amber-300 backdrop-blur-md shadow-md">
       <span>🎉</span>
       <span>{{ langService.t('events.badge') }}</span>
     </div>
-    <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-md">
+    <h1 class="page-hero-title font-black tracking-tight text-white hero-title-shadow">
       {{ langService.t('events.title') }}
     </h1>
-    <p class="text-sm sm:text-base text-emerald-100 max-w-2xl mx-auto font-medium">
+    <p class="text-sm sm:text-base text-white/95 max-w-2xl mx-auto font-medium hero-desc-shadow">
       {{ langService.t('events.subtitle') }}
     </p>
   </div>
 </div>
 
 <!-- Events List Section -->
-<div class="py-16 bg-stone-50 min-h-screen">
+<div class="pt-7 sm:pt-8 pb-3 sm:pb-3.5 bg-stone-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     @if (loading()) {
       <app-loading-spinner></app-loading-spinner>
@@ -40,11 +40,6 @@
               <div class="absolute top-4 left-4 px-3.5 py-1.5 bg-emerald-800 text-white text-xs font-bold rounded-full shadow-md">
                 📅 {{ evt.event_date | date:'mediumDate' }}
               </div>
-              @if (evt.price) {
-                <div class="absolute bottom-4 right-4 px-3.5 py-1.5 bg-amber-400 text-stone-950 text-xs font-black rounded-xl shadow-lg">
-                  {{ langService.isMarathi() ? 'प्रारंभिक दर ₹' : 'Starts at ₹' }}{{ evt.price }}
-                </div>
-              }
             </div>
 
             <div class="p-6 flex-1 flex flex-col justify-between space-y-4">

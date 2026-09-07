@@ -12,14 +12,32 @@ class EnquiryController extends Controller
 {
     public function index(Request $request): View
     {
+        $counts = [
+            'all' => Enquiry::count(),
+            'new' => Enquiry::where('status', 'new')->count(),
+            'contacted' => Enquiry::where('status', 'contacted')->count(),
+            'closed' => Enquiry::where('status', 'closed')->count(),
+        ];
+
         $query = Enquiry::latest();
 
-        if ($request->filled('status')) {
+        if ($request->filled('status') && in_array($request->status, ['new', 'contacted', 'closed'])) {
             $query->where('status', $request->status);
         }
 
-        $enquiries = $query->paginate(10);
-        return view('admin.enquiries.index', compact('enquiries'));
+        if ($request->filled('search')) {
+            $search = trim($request->search);
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('phone', 'like', "%{$search}%")
+                  ->orWhere('subject', 'like', "%{$search}%")
+                  ->orWhere('message', 'like', "%{$search}%");
+            });
+        }
+
+        $enquiries = $query->paginate(10)->withQueryString();
+        return view('admin.enquiries.index', compact('enquiries', 'counts'));
     }
 
     public function show(Enquiry $enquiry): View

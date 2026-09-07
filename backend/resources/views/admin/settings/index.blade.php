@@ -81,7 +81,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Instagram URL</label>
-                    <input type="url" name="instagram_url" value="{{ old('instagram_url', $settings['instagram_url'] ?? '') }}" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 outline-none" placeholder="https://instagram.com/...">
+                    <input type="url" name="instagram_url" value="{{ old('instagram_url', $settings['instagram_url'] ?? '') }}" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 outline-none" placeholder="https://www.instagram.com/visawaagrotourism">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">YouTube URL</label>

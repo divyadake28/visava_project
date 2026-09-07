@@ -33,7 +33,6 @@
                         <th class="px-6 py-3.5">Event Title</th>
                         <th class="px-6 py-3.5">Location</th>
                         <th class="px-6 py-3.5">Start Date</th>
-                        <th class="px-6 py-3.5">Entry Price</th>
                         <th class="px-6 py-3.5">Status</th>
                         <th class="px-6 py-3.5 text-right">Actions</th>
                     </tr>
@@ -44,7 +43,6 @@
                             <td class="px-6 py-4 font-semibold text-slate-900">{{ $event->title }}</td>
                             <td class="px-6 py-4 text-slate-600">{{ $event->location ?? 'Resort Premises' }}</td>
                             <td class="px-6 py-4 text-xs text-slate-600 font-medium">{{ $event->start_date->format('M d, Y H:i') }}</td>
-                            <td class="px-6 py-4 font-bold text-slate-900">{{ $event->price ? '₹'.number_format($event->price, 2) : 'Free Entry' }}</td>
                             <td class="px-6 py-4">
                                 <span class="badge {{ $event->is_active ? 'badge-active' : 'badge-inactive' }}">
                                     {{ $event->is_active ? 'Active' : 'Inactive' }}

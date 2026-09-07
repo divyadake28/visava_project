@@ -23,7 +23,7 @@ class EventRequest extends FormRequest
             'short_description_en' => 'nullable|string',
             'description_mr' => 'nullable|required_without:description_en|string',
             'description_en' => 'nullable|required_without:description_mr|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:30720',
             'status' => 'required|in:active,inactive',
         ];
     }

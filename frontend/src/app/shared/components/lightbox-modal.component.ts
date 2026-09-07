@@ -32,8 +32,8 @@ import { CommonModule } from '@angular/common';
         type="button" 
         (click)="onPrev($event)"
         aria-label="Previous Image"
-        class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-50 p-3 sm:p-4 rounded-full bg-black/50 hover:bg-emerald-600/90 text-white transition transform hover:scale-110 focus:outline-none cursor-pointer border border-white/10 shadow-2xl backdrop-blur-md">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+        class="absolute left-1 sm:left-6 top-1/2 -translate-y-1/2 z-50 p-2 sm:p-4 rounded-full bg-black/60 sm:bg-black/50 hover:bg-emerald-600/90 text-white transition transform hover:scale-110 focus:outline-none cursor-pointer border border-white/10 shadow-2xl backdrop-blur-md">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
       </button>
 
       <!-- Main Image Container -->
@@ -63,8 +63,8 @@ import { CommonModule } from '@angular/common';
         type="button" 
         (click)="onNext($event)"
         aria-label="Next Image"
-        class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-50 p-3 sm:p-4 rounded-full bg-black/50 hover:bg-emerald-600/90 text-white transition transform hover:scale-110 focus:outline-none cursor-pointer border border-white/10 shadow-2xl backdrop-blur-md">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        class="absolute right-1 sm:right-6 top-1/2 -translate-y-1/2 z-50 p-2 sm:p-4 rounded-full bg-black/60 sm:bg-black/50 hover:bg-emerald-600/90 text-white transition transform hover:scale-110 focus:outline-none cursor-pointer border border-white/10 shadow-2xl backdrop-blur-md">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
   `
@@ -82,6 +82,9 @@ export class LightboxModalComponent {
   @Output() prev = new EventEmitter<void>();
   @Output() next = new EventEmitter<void>();
 
+  private touchStartX = 0;
+  private touchEndX = 0;
+
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     if (!this.isOpen) return;
@@ -92,6 +95,26 @@ export class LightboxModalComponent {
       this.prev.emit();
     } else if (event.key === 'ArrowRight') {
       this.next.emit();
+    }
+  }
+
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) {
+    if (!this.isOpen) return;
+    this.touchStartX = event.changedTouches[0].screenX;
+  }
+
+  @HostListener('touchend', ['$event'])
+  onTouchEnd(event: TouchEvent) {
+    if (!this.isOpen) return;
+    this.touchEndX = event.changedTouches[0].screenX;
+    const diff = this.touchEndX - this.touchStartX;
+    if (Math.abs(diff) > 45) {
+      if (diff > 0) {
+        this.prev.emit();
+      } else {
+        this.next.emit();
+      }
     }
   }
 

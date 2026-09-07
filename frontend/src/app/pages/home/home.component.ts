@@ -105,10 +105,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   submitError = signal(false);
   submitErrorMessage = signal('');
   formSubmitted = signal(false);
+  private initialLangLoaded = false;
 
   constructor() {
     effect(() => {
       this.langService.currentLang();
+      if (!this.initialLangLoaded) {
+        this.initialLangLoaded = true;
+        return; // ngOnInit executes the initial parallel load
+      }
       this.loadAllData();
     });
   }
@@ -303,7 +308,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     event.stopPropagation();
     event.preventDefault();
 
-    const phone = this.settings()?.site?.phone || '+919876543210';
+    const phone = this.settings()?.site?.phone || '+919158141414';
     const cleanPhone = phone.replace(/[^0-9]/g, '');
 
     const isMr = this.langService.isMarathi();
@@ -311,11 +316,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (isMr) {
       msg = `नमस्कार! मी विसावा ॲग्रो टुरिझम – बाबांचा मळा येथील "${pkg.title}" या पॅकेजच्या चौकशी व बुकिंगसाठी संपर्क करत आहे.`;
       if (pkg.duration) msg += `\nकालावधी: ${pkg.duration}`;
-      if (pkg.price) msg += `\nकिंमत: ₹${pkg.price}`;
     } else {
       msg = `Hello! I would like to enquire and book the "${pkg.title}" package at Visawa Agro Tourism – Babacha Mala.`;
       if (pkg.duration) msg += `\nDuration: ${pkg.duration}`;
-      if (pkg.price) msg += `\nPrice: ₹${pkg.price}`;
     }
 
     const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
@@ -326,7 +329,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     event.stopPropagation();
     event.preventDefault();
 
-    const phone = this.settings()?.site?.phone || '+919876543210';
+    const phone = this.settings()?.site?.phone || '+919158141414';
     const cleanPhone = phone.replace(/[^0-9]/g, '');
 
     const isMr = this.langService.isMarathi();
@@ -344,14 +347,66 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
+    const formValues = { ...this.enquiryForm.value };
     this.isSubmitting.set(true);
     this.submitError.set(false);
 
-    this.enquiryService.submitEnquiry(this.enquiryForm.value).subscribe({
+    this.enquiryService.submitEnquiry(formValues).subscribe({
       next: (res) => {
         this.isSubmitting.set(false);
         if (res.success) {
           this.submitSuccess.set(true);
+
+          // Language Detection (localStorage or LanguageService)
+          const selectedLang = (typeof window !== 'undefined' ? localStorage.getItem('selectedLanguage') : null) || this.langService.currentLang();
+          const isMarathi = selectedLang === 'mr';
+
+          // Owner WhatsApp Number
+          const rawPhone = (res as any)?.whatsapp?.owner_number 
+            || this.settings()?.site?.whatsapp_owner_number 
+            || '919158141414';
+          const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
+          const ownerNumber = cleanPhone.length === 10 ? `91${cleanPhone}` : (cleanPhone || '919158141414');
+
+          // Build Exact Formatted Message
+          const custName = (formValues.name || '').trim() || '-';
+          const custPhone = (formValues.phone || '').trim() || '-';
+          const custEmail = (formValues.email || '').trim() || '-';
+          const custSubject = (formValues.subject || '').trim() || (isMarathi ? 'सामान्य चौकशी' : 'General Enquiry');
+          const custMessage = (formValues.message || '').trim() || '-';
+
+          let waMessage = '';
+          if (isMarathi) {
+            waMessage = `*विसावा कृषी पर्यटन व रिसॉर्ट*\n\n` +
+              `*नवीन चौकशी*\n\n` +
+              `*ग्राहकाचे नाव:* ${custName}\n` +
+              `*मोबाईल क्रमांक:* ${custPhone}\n` +
+              `*ईमेल:* ${custEmail}\n` +
+              `*भेटीचा उद्देश:* ${custSubject}\n\n` +
+              `*चौकशीचा तपशील:*\n` +
+              `${custMessage}\n\n` +
+              `*धन्यवाद.*`;
+          } else {
+            waMessage = `*VISAWA AGRO TOURISM & RESORT*\n\n` +
+              `*A New Enquiry Has Been Received*\n\n` +
+              `*Customer Name:* ${custName}\n` +
+              `*Mobile Number:* ${custPhone}\n` +
+              `*Email Address:* ${custEmail}\n` +
+              `*Purpose of Visit:* ${custSubject}\n\n` +
+              `*Enquiry Details:*\n` +
+              `${custMessage}\n\n` +
+              `*Thank You.*`;
+          }
+
+          // Open WhatsApp chat in a new tab
+          const whatsappUrl = `https://wa.me/${ownerNumber}?text=${encodeURIComponent(waMessage)}`;
+          try {
+            window.open(whatsappUrl, '_blank');
+          } catch (e) {
+            console.error('WhatsApp open error:', e);
+          }
+
+          // Reset form and keep success state
           this.enquiryForm.reset();
           this.formSubmitted.set(false);
         } else {
@@ -379,7 +434,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       return 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80';
     }
     if (title.includes('vineyard') || title.includes('द्राक्ष') || title.includes('grape')) {
-      return 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?w=800&auto=format&fit=crop&q=80';
+      return '/images/visawa_vineyard_patio.jpg';
     }
     if (title.includes('misal') || title.includes('मिसळ') || title.includes('जेवण') || title.includes('dining') || title.includes('food')) {
       return 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&auto=format&fit=crop&q=80';
@@ -400,9 +455,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       return 'https://images.unsplash.com/photo-1592417817098-8f3d69109853?w=800&auto=format&fit=crop&q=80';
     }
     if (title.includes('farm') || title.includes('शिवार') || title.includes('शेती')) {
-      return 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&auto=format&fit=crop&q=80';
+      return '/images/visawa_farm_orchard.jpg';
     }
-    return 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&auto=format&fit=crop&q=80';
+    return '/images/visawa_farm_orchard.jpg';
   }
 
   getPackageImage(pkg: Package): string {

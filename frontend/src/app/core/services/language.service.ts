@@ -16,7 +16,7 @@ const MARATHI_TRANSLATIONS: Translations = {
   // Top Bar & Header
   'topbar.openDaily': 'दररोज खुले: सकाळी ९:०० ते संध्या. ७:००',
   'topbar.phone': '+९१ ९८७६५ ४३२१०',
-  'topbar.email': 'info@visava.com',
+  'topbar.email': 'Visawaagrotourism@gmail.com',
   'topbar.whatsapp': 'व्हॉट्सॲप चॅट',
 
   // Navigation
@@ -26,10 +26,12 @@ const MARATHI_TRANSLATIONS: Translations = {
   'nav.packages': 'पॅकेजेस',
   'nav.events': 'इव्हेंट्स',
   'nav.gallery': 'गॅलरी',
+  'nav.villageFlavors': 'खाद्यसंस्कृती',
   'nav.blogs': 'ब्लॉग्स',
   'nav.contact': 'संपर्क',
   'nav.bookNow': 'आताच बुक करा',
   'nav.phone': 'थेट कॉल करा',
+  'nav.callResort': 'रिसॉर्टला कॉल करा',
 
   // Hero Section
   'hero.badge': '🌱 महाराष्ट्रातील अग्रगण्य अस्सल कृषी व निसर्ग पर्यटन केंद्र',
@@ -90,7 +92,7 @@ const MARATHI_TRANSLATIONS: Translations = {
   // Packages Section
   'packages.badge': 'कृषी व सहल पॅकेजेस',
   'packages.title': 'तुमच्या सुट्टीसाठी खास डिझाइन केलेले पॅकेजेस',
-  'packages.subtitle': '१ दिवसाच्या डे-पिकनिक पासून ते वीकेंड मुक्कामापर्यंत वाजवी दरातील योजना',
+  'packages.subtitle': '१ दिवसाच्या डे-पिकनिक पासून ते वीकेंड मुक्कामापर्यंत निसर्गरम्य अनुभव आणि संपूर्ण आदरातिथ्य',
   'packages.viewAll': 'सर्व पॅकेजेस पहा',
   'packages.priceFrom': 'दर प्रति व्यक्ती',
   'packages.inclusions': 'पॅकेजमध्ये समाविष्ट',
@@ -209,7 +211,7 @@ const MARATHI_TRANSLATIONS: Translations = {
   'contact.title': 'तुमच्या सहलीचे नियोजन करण्यासाठी आजच संपर्क साधा',
   'contact.subtitle': 'विसावा ॲग्रो टुरिझम – बाबांचा मळा येथे तुमचे सहर्ष स्वागत आहे!',
   'contact.addressTitle': 'आमचा पत्ता',
-  'contact.addressVal': 'विसावा ॲग्रो टुरिझम – बाबांचा मळा, निसर्गरम्य परिसर, महाराष्ट्र, भारत',
+  'contact.addressVal': 'विसावा ॲग्रो टुरिझम – बाबांचा मळा, धुळे–सोलापूर हायवे, करोडी टोल नाक्याजवळ, हॉटेल अमृताच्या मागे, करोडी, वाळूज, छत्रपती संभाजीनगर (औरंगाबाद), महाराष्ट्र ४३११३६, भारत',
   'contact.phoneTitle': 'फोन नंबर',
   'contact.emailTitle': 'ईमेल पत्ता',
   'contact.timingTitle': 'कार्यकारी वेळा',
@@ -242,6 +244,7 @@ const MARATHI_TRANSLATIONS: Translations = {
 
   // Footer
   'footer.about': 'विसावा ॲग्रो टुरिझम – बाबांचा मळा हे महाराष्ट्रातील अग्रगण्य कृषी व निसर्ग पर्यटन केंद्र आहे. शेती, संस्कृती आणि मनमुराद आनंदाचे हक्काचे ठिकाण.',
+  'footer.shortAddress': 'विसावा ॲग्रो टुरिझम – बाबांचा मळा, करोडी, वाळूज, छत्रपती संभाजीनगर, महाराष्ट्र',
   'footer.quickLinks': 'महत्वाच्या लिंक्स',
   'footer.experiences': 'प्रमुख आकर्षणे',
   'footer.contact': 'संपर्क माहिती',
@@ -282,8 +285,8 @@ const ENGLISH_TRANSLATIONS: Translations = {
 
   // Top Bar & Header
   'topbar.openDaily': 'Open Daily: 9:00 AM – 7:00 PM',
-  'topbar.phone': '+91 98765 43210',
-  'topbar.email': 'info@visava.com',
+  'topbar.phone': '+91 91581 41414',
+  'topbar.email': 'Visawaagrotourism@gmail.com',
   'topbar.whatsapp': 'WhatsApp Chat',
 
   // Navigation
@@ -293,10 +296,12 @@ const ENGLISH_TRANSLATIONS: Translations = {
   'nav.packages': 'Packages',
   'nav.events': 'Events',
   'nav.gallery': 'Gallery',
+  'nav.villageFlavors': 'Village Flavors',
   'nav.blogs': 'Blogs',
   'nav.contact': 'Contact',
   'nav.bookNow': 'Book Now',
   'nav.phone': 'Call Directly',
+  'nav.callResort': 'Call Resort',
 
   // Hero Section
   'hero.badge': '🌱 Maharashtra’s Premier Agro & Nature Tourism Destination',
@@ -357,7 +362,7 @@ const ENGLISH_TRANSLATIONS: Translations = {
   // Packages Section
   'packages.badge': 'Agro Tour Packages',
   'packages.title': 'Handcrafted Packages for Day Outings & Weekend Stays',
-  'packages.subtitle': 'From 1-day family picnics to relaxing 2-3 day cottage stays with all meals included',
+  'packages.subtitle': 'From 1-day family picnics to relaxing cottage stays with pure farm-fresh hospitality',
   'packages.viewAll': 'View All Packages',
   'packages.priceFrom': 'Price per person',
   'packages.inclusions': 'Package Inclusions',
@@ -476,7 +481,7 @@ const ENGLISH_TRANSLATIONS: Translations = {
   'contact.title': 'Plan Your Agro Getaway With Us Today',
   'contact.subtitle': 'Visawa Agro Tourism – Babacha Mala looks forward to welcoming you and your family!',
   'contact.addressTitle': 'Our Farm Address',
-  'contact.addressVal': 'Visawa Agro Tourism – Babacha Mala, Scenic Countryside, Maharashtra, India',
+  'contact.addressVal': 'Visawa Agro Tourism – Babacha Mala, Dhule–Solapur Highway, Near Karodi Toll Plaza, Behind Hotel Amruta, Karodi, Waluj, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431136, India',
   'contact.phoneTitle': 'Phone Support',
   'contact.emailTitle': 'Email Address',
   'contact.timingTitle': 'Visiting Hours',
@@ -494,7 +499,7 @@ const ENGLISH_TRANSLATIONS: Translations = {
   'form.emailPlaceholder': 'e.g. rahul@example.com',
   'form.emailRequired': 'Please enter a valid email address.',
   'form.phone': 'Mobile / Phone Number',
-  'form.phonePlaceholder': 'e.g. +91 98765 43210',
+  'form.phonePlaceholder': 'e.g. +91 91581 41414',
   'form.subject': 'Subject / Purpose of Visit',
   'form.subjectPlaceholder': 'e.g. Family Day Picnic Booking for 10 Persons',
   'form.message': 'Your Message / Inquiry Details',
@@ -509,6 +514,7 @@ const ENGLISH_TRANSLATIONS: Translations = {
 
   // Footer
   'footer.about': 'Visawa Agro Tourism – Babacha Mala is Maharashtra’s premier agro-tourism resort, connecting families with nature, farming heritage, and pure wood-fired village dining.',
+  'footer.shortAddress': 'Visawa Agro Tourism – Babacha Mala, Karodi, Waluj, Chhatrapati Sambhajinagar, Maharashtra',
   'footer.quickLinks': 'Quick Links',
   'footer.experiences': 'Top Experiences',
   'footer.contact': 'Contact Us',
@@ -544,7 +550,7 @@ const ENGLISH_TRANSLATIONS: Translations = {
   providedIn: 'root',
 })
 export class LanguageService {
-  private readonly storageKey = 'visawa_selected_lang';
+  private readonly storageKey = 'selectedLanguage';
 
   // Default to Marathi on first visit
   private langSignal = signal<LanguageCode>(this.getInitialLanguage());
@@ -557,8 +563,17 @@ export class LanguageService {
     if (typeof window !== 'undefined' && window.localStorage) {
       const saved = localStorage.getItem(this.storageKey);
       if (saved === 'en' || saved === 'mr') {
-        return saved;
+        if (typeof document !== 'undefined' && document.documentElement) {
+          document.documentElement.lang = saved;
+        }
+        return saved as LanguageCode;
       }
+      // On very first visit (no preference in localStorage), default to Marathi and persist
+      localStorage.setItem(this.storageKey, 'mr');
+    }
+
+    if (typeof document !== 'undefined' && document.documentElement) {
+      document.documentElement.lang = 'mr';
     }
     return 'mr'; // Default: Marathi
   }
@@ -567,6 +582,9 @@ export class LanguageService {
     this.langSignal.set(lang);
     if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.setItem(this.storageKey, lang);
+    }
+    if (typeof document !== 'undefined' && document.documentElement) {
+      document.documentElement.lang = lang;
     }
   }
 

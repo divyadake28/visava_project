@@ -13,16 +13,20 @@ class ActivityController extends Controller
     public function index(Request $request): JsonResponse
     {
         $lang = $request->query('lang', 'mr');
-        $activities = Activity::where('is_active', true)
-            ->orderBy('sort_order', 'asc')
-            ->orderBy('id', 'asc')
-            ->get();
+        $data = \Illuminate\Support\Facades\Cache::remember("api_activities_{$lang}", 3600, function () {
+            $activities = Activity::where('is_active', true)
+                ->orderBy('sort_order', 'asc')
+                ->orderBy('id', 'asc')
+                ->get();
+
+            return ActivityResource::collection($activities)->resolve();
+        });
 
         return response()->json([
             'success' => true,
             'message' => $lang === 'mr' ? 'अनुभव व उपक्रम यशस्वीरित्या प्राप्त झाले' : 'Activities fetched successfully',
             'language' => $lang,
-            'data' => ActivityResource::collection($activities),
+            'data' => $data,
         ]);
     }
 

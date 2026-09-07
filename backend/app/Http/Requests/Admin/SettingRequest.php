@@ -46,10 +46,10 @@ class SettingRequest extends FormRequest
             'contact_title_en' => 'nullable|string|max:255',
             'contact_description_mr' => 'nullable|string',
             'contact_description_en' => 'nullable|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
-            'favicon' => 'nullable|image|mimes:jpeg,png,jpg,ico,png|max:1024',
-            'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
-            'about_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:5120',
+            'favicon' => 'nullable|image|mimes:jpeg,png,jpg,ico,png|max:2048',
+            'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:30720',
+            'about_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:30720',
         ];
     }
 }

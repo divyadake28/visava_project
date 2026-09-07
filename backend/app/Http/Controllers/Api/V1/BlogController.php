@@ -13,16 +13,20 @@ class BlogController extends Controller
     public function index(Request $request): JsonResponse
     {
         $lang = $request->query('lang', 'mr');
-        $blogs = Blog::where('status', 'active')
-            ->orWhere('is_published', true)
-            ->latest()
-            ->get();
+        $data = \Illuminate\Support\Facades\Cache::remember("api_blogs_{$lang}", 3600, function () {
+            $blogs = Blog::where('status', 'active')
+                ->orWhere('is_published', true)
+                ->latest()
+                ->get();
+
+            return BlogResource::collection($blogs)->resolve();
+        });
 
         return response()->json([
             'success' => true,
-            'message' => $lang === 'mr' ? '????? ???????????? ???? ????' : 'Blogs fetched successfully',
+            'message' => $lang === 'mr' ? 'ब्लॉग्स यशस्वीरित्या प्राप्त झाले' : 'Blogs fetched successfully',
             'language' => $lang,
-            'data' => BlogResource::collection($blogs),
+            'data' => $data,
         ]);
     }
 

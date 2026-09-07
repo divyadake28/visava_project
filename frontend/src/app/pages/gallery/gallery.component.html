@@ -1,33 +1,33 @@
 <!-- Hero Banner -->
-<div class="relative py-20 lg:py-28 bg-emerald-950 text-white overflow-hidden">
+<div class="page-hero relative bg-[#0D3B1C] text-white overflow-hidden flex items-center justify-center">
   <div class="absolute inset-0 z-0">
     <img 
-      src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?w=1920&auto=format&fit=crop&q=85" 
+      [src]="settings()?.homepage?.hero?.image || '/images/visawa_grand_entrance_hero.jpg'" 
       alt="Visawa Agro Gallery" 
-      class="w-full h-full object-cover opacity-25 scale-105">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950 via-emerald-950/90 to-stone-900/80"></div>
+      class="page-hero-img w-full h-full object-cover">
+    <div class="absolute inset-0 page-hero-overlay"></div>
   </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/20 border border-emerald-400/30 rounded-full text-xs font-bold text-emerald-300 backdrop-blur-md">
+  <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4 w-full">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0D3B1C]/85 border border-amber-400/40 rounded-full text-xs font-bold text-amber-300 backdrop-blur-md shadow-md">
       <span>📸</span>
       <span>{{ langService.t('gallery.badge') }}</span>
     </div>
-    <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-md">
+    <h1 class="page-hero-title font-black tracking-tight text-white hero-title-shadow">
       {{ langService.t('gallery.title') }}
     </h1>
-    <p class="text-sm sm:text-base text-emerald-100 max-w-2xl mx-auto font-medium">
+    <p class="text-sm sm:text-base text-white/95 max-w-2xl mx-auto font-medium hero-desc-shadow">
       {{ langService.t('gallery.subtitle') }}
     </p>
   </div>
 </div>
 
 <!-- Gallery Main Content (Clean Natural Light Cream Theme) -->
-<div class="py-12 sm:py-16 bg-stone-50 min-h-screen">
+<div class="pt-7 sm:pt-8 pb-3 sm:pb-3.5 bg-stone-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
     
     <!-- Category Filter Chips -->
     <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-      @for (filter of categoryFilters; track filter.key) {
+      @for (filter of categoryFilters(); track filter.key) {
         <button 
           type="button"
           (click)="setCategory(filter.key)"
@@ -63,6 +63,30 @@
         [description]="langService.isMarathi() ? 'या प्रकारात सध्या फोटो उपलब्ध नाहीत.' : 'No photos found in this category.'">
       </app-empty-state>
     } @else {
+      <!-- Category Section Header & Image Counter -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-200/80 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">{{ getActiveCategoryIcon() }}</span>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-stone-900 leading-tight">
+              {{ getActiveCategoryTitle() }}
+            </h2>
+            <p class="text-xs text-stone-500 font-medium mt-0.5">
+              {{ langService.isMarathi() ? 'एकूण उपलब्ध फोटो:' : 'Showing' }} {{ filteredGallery().length }} {{ langService.isMarathi() ? 'फोटो' : 'photos' }}
+            </p>
+          </div>
+        </div>
+        @if (selectedCategory() !== 'all') {
+          <button 
+            type="button"
+            (click)="setCategory('all')" 
+            class="self-start sm:self-auto text-xs font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1 cursor-pointer group">
+            <span>&larr;</span>
+            <span class="underline">{{ langService.isMarathi() ? 'सर्व फोटो पहा (All Photos)' : 'View All Photos' }}</span>
+          </button>
+        }
+      </div>
+
       <!-- 4-Column Responsive Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-7">
         @for (photo of filteredGallery(); track photo.id; let i = $index) {

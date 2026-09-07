@@ -1,28 +1,28 @@
 <!-- Hero Banner -->
-<div class="relative py-20 lg:py-28 bg-emerald-950 text-white overflow-hidden">
+<div class="page-hero relative bg-[#0D3B1C] text-white overflow-hidden flex items-center justify-center">
   <div class="absolute inset-0 z-0">
     <img 
-      src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&auto=format&fit=crop&q=85" 
+      [src]="settings()?.homepage?.hero?.image || '/images/visawa_grand_entrance_hero.jpg'" 
       alt="Visawa Agro Packages" 
-      class="w-full h-full object-cover opacity-25 scale-105">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950 via-emerald-950/90 to-stone-900/80"></div>
+      class="page-hero-img w-full h-full object-cover">
+    <div class="absolute inset-0 page-hero-overlay"></div>
   </div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/20 border border-emerald-400/30 rounded-full text-xs font-bold text-emerald-300 backdrop-blur-md">
+  <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4 w-full">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#0D3B1C]/85 border border-amber-400/40 rounded-full text-xs font-bold text-amber-300 backdrop-blur-md shadow-md">
       <span>🌾</span>
       <span>{{ langService.t('packages.badge') }}</span>
     </div>
-    <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white drop-shadow-md">
+    <h1 class="page-hero-title font-black tracking-tight text-white hero-title-shadow">
       {{ langService.t('packages.title') }}
     </h1>
-    <p class="text-sm sm:text-base text-emerald-100 max-w-2xl mx-auto font-medium">
+    <p class="text-sm sm:text-base text-white/95 max-w-2xl mx-auto font-medium hero-desc-shadow">
       {{ langService.t('packages.subtitle') }}
     </p>
   </div>
 </div>
 
 <!-- Packages List Section -->
-<div class="py-20 bg-stone-50 min-h-screen">
+<div class="pt-7 sm:pt-8 pb-12 sm:pb-16 bg-stone-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     @if (loading()) {
       <app-loading-spinner [message]="langService.t('packages.loading')"></app-loading-spinner>
@@ -42,14 +42,6 @@
                   ⏳ {{ pkg.duration }}
                 </span>
               }
-              <div class="absolute bottom-4 right-4 px-4 py-2 bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 text-stone-950 text-sm font-black rounded-xl shadow-lg flex items-baseline gap-1.5">
-                @if (pkg.discounted_price) {
-                  <span class="text-[11px] text-stone-900/70 line-through">₹{{ pkg.price }}</span>
-                  <span class="text-base font-black">₹{{ pkg.discounted_price }}</span>
-                } @else {
-                  <span class="text-base font-black">₹{{ pkg.price }}</span>
-                }
-              </div>
             </div>
 
             <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
@@ -64,7 +56,7 @@
                 </p>
               </div>
 
-              <div class="pt-4 border-t border-stone-100 flex items-center justify-between gap-2">
+              <div class="pt-4 border-t border-stone-100 flex flex-wrap items-center justify-between gap-2.5">
                 <a [routerLink]="['/packages', pkg.slug]" class="text-xs font-bold text-emerald-700 hover:text-emerald-900 inline-flex items-center gap-1 group/btn">
                   <span>{{ langService.t('btn.viewDetails') }}</span>
                   <svg class="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -80,6 +72,29 @@
             </div>
           </div>
         }
+      </div>
+
+      <!-- Bottom Village Flavors Banner CTA -->
+      <div class="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0D3B1C] to-emerald-900 border border-amber-400/30 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div class="space-y-1 text-center sm:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-400/20 text-amber-300 rounded-full text-xs font-bold border border-amber-400/30">
+            <span>🍽️</span>
+            <span>{{ langService.isMarathi() ? 'चुलीवरचे अस्सल जेवण' : 'Wood-Fired Dining' }}</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-black text-white">
+            {{ langService.isMarathi() ? 'गावरान खाद्यसंस्कृतीचा आस्वाद घ्या' : 'Experience Authentic Village Flavors' }}
+          </h3>
+          <p class="text-xs sm:text-sm text-emerald-100/90 max-w-xl">
+            {{ langService.isMarathi() ? 'सर्व पॅकेजेससोबत चुलीवरची ताजी भाकरी, पिठलं, मटकी उसळ आणि अस्सल गावरान जेवण.' : 'Enjoy farm-fresh Maharashtrian cuisine prepared on traditional wood-fired stoves.' }}
+          </p>
+        </div>
+        <a 
+          routerLink="/village-flavors" 
+          class="inline-flex items-center gap-2.5 px-7 py-3.5 bg-amber-400 hover:bg-amber-300 text-emerald-950 text-xs sm:text-sm font-black rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 shrink-0 group">
+          <span>🍽️</span>
+          <span>{{ langService.isMarathi() ? 'गावरान खाद्य मेनू पहा' : 'Authentic Village Flavors' }}</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
       </div>
     }
   </div>

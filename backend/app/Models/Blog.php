@@ -20,6 +20,9 @@ class Blog extends Model
         'description_mr',
         'description_en',
         'featured_image',
+        'blog_video',
+        'youtube_url',
+        'instagram_url',
         'status',
         'created_by',
         'updated_by',
@@ -57,6 +60,16 @@ class Blog extends Model
             if (auth()->check()) {
                 $model->updated_by = auth()->id();
             }
+        });
+
+        static::saved(function () {
+            \Illuminate\Support\Facades\Cache::forget('api_blogs_mr');
+            \Illuminate\Support\Facades\Cache::forget('api_blogs_en');
+        });
+
+        static::deleted(function () {
+            \Illuminate\Support\Facades\Cache::forget('api_blogs_mr');
+            \Illuminate\Support\Facades\Cache::forget('api_blogs_en');
         });
     }
 

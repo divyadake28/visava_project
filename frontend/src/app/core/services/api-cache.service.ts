@@ -20,21 +20,22 @@ export class ApiCacheService {
   private readonly STORAGE_KEY_PREFIX = 'visava_cache_';
   private readonly STORAGE_INDEX_KEY = 'visava_cache_keys';
 
-  // Short TTLs (in milliseconds) to ensure changes from Laravel Admin reflect quickly
+  // Persistent cache TTLs (5 minutes) with Stale-While-Revalidate
   private readonly TTL_CONFIG: Record<string, number> = {
-    '/settings': 10 * 1000,      // 10 seconds
-    '/packages': 10 * 1000,      // 10 seconds
-    '/activities': 10 * 1000,    // 10 seconds
-    '/events': 10 * 1000,        // 10 seconds
-    '/testimonials': 10 * 1000,  // 10 seconds
-    '/gallery': 10 * 1000,       // 10 seconds
-    '/blogs': 10 * 1000,         // 10 seconds
+    '/settings': 5 * 60 * 1000,      // 5 minutes
+    '/packages': 5 * 60 * 1000,      // 5 minutes
+    '/activities': 5 * 60 * 1000,    // 5 minutes
+    '/dining': 5 * 60 * 1000,        // 5 minutes
+    '/events': 5 * 60 * 1000,        // 5 minutes
+    '/testimonials': 5 * 60 * 1000,  // 5 minutes
+    '/gallery': 5 * 60 * 1000,       // 5 minutes
+    '/blogs': 5 * 60 * 1000,         // 5 minutes
   };
-  private readonly DEFAULT_TTL = 10 * 1000; // 10 seconds default
+  private readonly DEFAULT_TTL = 5 * 60 * 1000; // 5 minutes default
 
   constructor() {
-    // Clear all previous stale caches on init so updates immediately show
-    this.clear();
+    // Only purge expired items; preserve valid cache across page reloads and visits
+    this.purgeExpired();
   }
 
   getTtlForUrl(url: string): number {
@@ -46,14 +47,16 @@ export class ApiCacheService {
     return this.DEFAULT_TTL;
   }
 
-  get(key: string): CacheEntry | null {
+  get(key: string, allowExpired = false): CacheEntry | null {
     // 1. Check memory cache
     if (this.memoryCache.has(key)) {
       const entry = this.memoryCache.get(key)!;
-      if (!this.isExpired(entry)) {
+      if (allowExpired || !this.isExpired(entry)) {
         return entry;
       }
-      this.memoryCache.delete(key);
+      if (!allowExpired) {
+        this.memoryCache.delete(key);
+      }
     }
 
     // 2. Check localStorage
@@ -62,11 +65,13 @@ export class ApiCacheService {
         const raw = localStorage.getItem(this.STORAGE_KEY_PREFIX + key);
         if (raw) {
           const parsed: CacheEntry = JSON.parse(raw);
-          if (!this.isExpired(parsed)) {
+          if (allowExpired || !this.isExpired(parsed)) {
             this.memoryCache.set(key, parsed);
             return parsed;
           }
-          localStorage.removeItem(this.STORAGE_KEY_PREFIX + key);
+          if (!allowExpired) {
+            localStorage.removeItem(this.STORAGE_KEY_PREFIX + key);
+          }
         }
       }
     } catch {}

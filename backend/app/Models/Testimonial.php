@@ -34,6 +34,21 @@ class Testimonial extends Model
         ];
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(function () {
+            \Illuminate\Support\Facades\Cache::forget('api_testimonials_mr');
+            \Illuminate\Support\Facades\Cache::forget('api_testimonials_en');
+        });
+
+        static::deleted(function () {
+            \Illuminate\Support\Facades\Cache::forget('api_testimonials_mr');
+            \Illuminate\Support\Facades\Cache::forget('api_testimonials_en');
+        });
+    }
+
     public function getLocalized(string $field, string $lang = 'mr'): ?string
     {
         $primary = "{$field}_{$lang}";

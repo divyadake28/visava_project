@@ -29,13 +29,23 @@ export class PackageDetailsComponent implements OnInit {
   error = signal(false);
 
   otherPackages = computed(() => {
-    const currentSlug = this.slug;
-    return this.allPackages().filter(p => p.slug !== currentSlug).slice(0, 3);
+    const current = this.pkg();
+    const currentSlug = (current?.slug || this.slug || '').trim().toLowerCase();
+    const currentId = current?.id;
+
+    return this.allPackages()
+      .filter(p => {
+        if (currentId && p.id === currentId) return false;
+        if (currentSlug && p.slug && p.slug.trim().toLowerCase() === currentSlug) return false;
+        if (current?.title && p.title && p.title.trim().toLowerCase() === current.title.trim().toLowerCase()) return false;
+        return true;
+      })
+      .slice(0, 3);
   });
 
   // Clean WhatsApp Number formatting (digits only, e.g. 919876543210)
   formattedWhatsAppNumber = computed(() => {
-    const rawPhone = this.settings()?.site?.phone || '+91 98765 43210';
+    const rawPhone = this.settings()?.site?.phone || '+91 91581 41414';
     if (!rawPhone) return '';
     const digits = rawPhone.replace(/\D/g, '');
     if (!digits) return '';
@@ -188,13 +198,12 @@ export class PackageDetailsComponent implements OnInit {
 
     const title = currentPkg.title || 'Tour Package';
     const duration = currentPkg.duration || (this.langService.isMarathi() ? 'संपूर्ण दिवस' : 'Full Day');
-    const price = currentPkg.discounted_price ? `₹${currentPkg.discounted_price}` : `₹${currentPkg.price}`;
 
     let message = '';
     if (this.langService.isMarathi()) {
-      message = `नमस्कार, मला "${title}" या पॅकेजबद्दल माहिती हवी आहे. कालावधी: ${duration}. किंमत: ${price}. कृपया उपलब्धता आणि बुकिंगची माहिती पाठवा.`;
+      message = `नमस्कार, मला "${title}" या पॅकेजबद्दल माहिती हवी आहे. कालावधी: ${duration}. कृपया उपलब्धता आणि बुकिंगची माहिती पाठवा.`;
     } else {
-      message = `Hello, I would like more information about the "${title}" package. Duration: ${duration}. Price: ${price}. Please share availability and booking details.`;
+      message = `Hello, I would like more information about the "${title}" package. Duration: ${duration}. Please share availability and booking details.`;
     }
 
     const encodedMessage = encodeURIComponent(message);

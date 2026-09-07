@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LanguageService } from '../../core/services/language.service';
 import { EventService } from '../../core/services/event.service';
+import { SettingService } from '../../core/services/setting.service';
 import { EventItem } from '../../core/models/event.model';
 import { LoadingSpinnerComponent } from '../../shared/components/loading-spinner.component';
 import { EmptyStateComponent } from '../../shared/components/empty-state.component';
@@ -16,8 +17,10 @@ import { EmptyStateComponent } from '../../shared/components/empty-state.compone
 export class EventsComponent implements OnInit {
   langService = inject(LanguageService);
   private eventService = inject(EventService);
+  private settingService = inject(SettingService);
 
   events = signal<EventItem[]>([]);
+  settings = signal<any | null>(null);
   loading = signal(true);
 
   constructor() {
@@ -29,6 +32,13 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     this.loadEvents();
+    this.settingService.getSettings().subscribe({
+      next: (res) => {
+        if (res.success && res.data) {
+          this.settings.set(res.data);
+        }
+      }
+    });
   }
 
   loadEvents() {

@@ -36,6 +36,10 @@ Route::prefix('v1')->group(function () {
     Route::get('/activities', [\App\Http\Controllers\Api\V1\ActivityController::class, 'index']);
     Route::get('/activities/{id}', [\App\Http\Controllers\Api\V1\ActivityController::class, 'show']);
 
+    // Dining & Authentic Village Flavors
+    Route::get('/dining', [\App\Http\Controllers\Api\V1\DiningController::class, 'index']);
+    Route::get('/dining/{id}', [\App\Http\Controllers\Api\V1\DiningController::class, 'show']);
+
     // Galleries
     Route::get('/gallery', [\App\Http\Controllers\Api\V1\GalleryController::class, 'index']);
 
@@ -47,4 +51,7 @@ Route::prefix('v1')->group(function () {
 
     // Settings & Homepage CMS
     Route::get('/settings', [\App\Http\Controllers\Api\V1\SettingController::class, 'index']);
+
+    // UTF-8 & Emoji Compatibility Diagnostic Audit
+    Route::get('/diagnostic/emoji', [\App\Http\Controllers\Api\V1\DiagnosticController::class, 'emojiAudit']);
 });

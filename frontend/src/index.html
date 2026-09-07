@@ -7,11 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Experience Nature, Tradition & Unforgettable Hospitality at Visawa Agro Tourism – Babacha Mala. Enjoy vineyard tours, wood-fired authentic food, pool, and family fun." />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon" href="favicon.png" />
 
     <!-- Google Fonts: Plus Jakarta Sans & Noto Sans Devanagari -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Preconnect to Backend API for instant handshake -->
+    <link rel="preconnect" href="http://127.0.0.1:8000">
+
+    <!-- Preload Critical Hero Banner & Logo -->
+    <link rel="preload" as="image" href="/images/visawa_grand_entrance_hero.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/visawa_resort_logo.png">
+
+    <!-- Pre-boot Language Initialization (Default Marathi 'mr' on first visit) -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem("selectedLanguage");
+          if (saved !== "mr" && saved !== "en") {
+            saved = "mr";
+            localStorage.setItem("selectedLanguage", "mr");
+          }
+          document.documentElement.lang = saved;
+        } catch (e) {
+          document.documentElement.lang = "mr";
+        }
+      })();
+    </script>
   </head>
   <body class="h-full bg-stone-50 text-stone-900 antialiased selection:bg-emerald-700 selection:text-white">
     <app-root></app-root>

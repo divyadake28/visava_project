@@ -28,7 +28,7 @@ export class EventDetailsComponent implements OnInit {
   error = signal(false);
 
   formattedWhatsAppNumber = computed(() => {
-    const rawPhone = this.settings()?.site?.phone || '+91 98765 43210';
+    const rawPhone = this.settings()?.site?.phone || '+91 91581 41414';
     if (!rawPhone) return '';
     const digits = rawPhone.replace(/\D/g, '');
     if (!digits) return '';
@@ -123,9 +123,9 @@ export class EventDetailsComponent implements OnInit {
 
     let message = '';
     if (this.langService.isMarathi()) {
-      message = `नमस्कार, मला "${title}" या कार्यक्रमाबद्दल/इव्हेंट पॅकेजबद्दल माहिती हवी आहे. ठिकाण: ${loc}. कृपया उपलब्ध तारखा, दर आणि बुकिंगचे तपशील पाठवा.`;
+      message = `नमस्कार, मला "${title}" या कार्यक्रमाबद्दल/इव्हेंटबद्दल माहिती हवी आहे. ठिकाण: ${loc}. कृपया उपलब्ध तारखा आणि बुकिंगचे तपशील पाठवा.`;
     } else {
-      message = `Hello, I would like more information about "${title}". Location: ${loc}. Please share available dates, packages, and booking details.`;
+      message = `Hello, I would like more information about "${title}". Location: ${loc}. Please share available dates and booking details.`;
     }
 
     const encodedMessage = encodeURIComponent(message);

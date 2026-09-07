@@ -37,6 +37,11 @@ class Package extends Model
         'is_active',
     ];
 
+    protected $attributes = [
+        'price' => 0,
+        'discounted_price' => null,
+    ];
+
     protected function casts(): array
     {
         return [
@@ -67,6 +72,16 @@ class Package extends Model
             if (auth()->check()) {
                 $model->updated_by = auth()->id();
             }
+        });
+
+        static::saved(function () {
+            \Illuminate\Support\Facades\Cache::forget('api_packages_mr');
+            \Illuminate\Support\Facades\Cache::forget('api_packages_en');
+        });
+
+        static::deleted(function () {
+            \Illuminate\Support\Facades\Cache::forget('api_packages_mr');
+            \Illuminate\Support\Facades\Cache::forget('api_packages_en');
         });
     }
 
