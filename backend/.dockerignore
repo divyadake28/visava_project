@@ -1,0 +1,14 @@
+.git
+.github
+.vscode
+node_modules
+vendor
+.env
+.env.backup
+.phpunit.result.cache
+*.zip
+storage/logs/*.log
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+infinityfree/
