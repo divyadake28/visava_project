@@ -17,8 +17,8 @@ export interface CacheEntry<T = any> {
 export class ApiCacheService {
   private memoryCache = new Map<string, CacheEntry>();
   private inFlightRequests = new Map<string, Observable<HttpEvent<any>>>();
-  private readonly STORAGE_KEY_PREFIX = 'visava_cache_';
-  private readonly STORAGE_INDEX_KEY = 'visava_cache_keys';
+  private readonly STORAGE_KEY_PREFIX = 'visava_cache_v3_';
+  private readonly STORAGE_INDEX_KEY = 'visava_cache_v3_keys';
 
   // Persistent cache TTLs (5 minutes) with Stale-While-Revalidate
   private readonly TTL_CONFIG: Record<string, number> = {
@@ -34,8 +34,23 @@ export class ApiCacheService {
   private readonly DEFAULT_TTL = 5 * 60 * 1000; // 5 minutes default
 
   constructor() {
-    // Only purge expired items; preserve valid cache across page reloads and visits
+    this.cleanupLegacyCache();
     this.purgeExpired();
+  }
+
+  private cleanupLegacyCache(): void {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const keysToRemove: string[] = [];
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          if (k && k.startsWith('visava_cache_') && !k.startsWith(this.STORAGE_KEY_PREFIX)) {
+            keysToRemove.push(k);
+          }
+        }
+        keysToRemove.forEach(k => localStorage.removeItem(k));
+      }
+    } catch {}
   }
 
   getTtlForUrl(url: string): number {

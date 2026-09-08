@@ -12,8 +12,8 @@
  *   2. In another terminal: php artisan migrate:fresh --seed
  */
 
-const net = require('net');
-const tls = require('tls');
+import net from 'net';
+import tls from 'tls';
 
 const LOCAL_PORT = 5433;
 const REMOTE_HOST = 'dpg-dafeufv40ujc73b16png-a.singapore-postgres.render.com';
